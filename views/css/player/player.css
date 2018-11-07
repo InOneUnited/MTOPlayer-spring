@@ -70,7 +70,7 @@ header img {
 
 #seekBar[value] {
     background: #FFF;
-    height: 2px;
+    height: 3px;
 }
 
 #seekBar::-webkit-progress-value {

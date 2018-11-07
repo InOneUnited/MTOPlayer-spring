@@ -88,6 +88,7 @@ function initPlayers() {
     var isPlaying = false;
     var playBtn = document.getElementById('play-song');
     var pauseBtn = document.getElementById('pause-song');
+    var stopBtn = document.getElementById('stop-song');
 
     // Controls Listeners
     // ----------------------------------------------------------
@@ -97,7 +98,16 @@ function initPlayers() {
     pauseBtn.addEventListener('click', function () {
         togglePlayOff();
     });
+    stopBtn.addEventListener('click', function () {
+        togglePlayOff();
+        player.load();
 
+        document.getElementById('seekBar').value = 0;
+
+        var length = document.getElementById('player').duration;
+        var totalLength = calculateTotalValue(length);
+        document.getElementById("end-time").innerHTML = totalLength;
+    });
 
     // Controls & Sounds Methods
     // ----------------------------------------------------------
@@ -136,7 +146,6 @@ function calculateTotalValue(length) {
 
     var time = minutes + ':' + second;
 
-    console.log(time);
     return time;
 }
 
