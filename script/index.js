@@ -13,7 +13,7 @@ function submit() {
     if (login == loginPattern && password == passwordPattern) {
         var dbox = new Dropbox({ key: 'ZP2-tmvGcPAAAAAAAAAAD4J9jcQkIzzzb8q0QdCC5ssPk6RkSMQnA0t4CxzLXpqd' });
         localStorage.setItem("key", dbox);
-        
+        window.location.href = "player.html";
     }
  
         
