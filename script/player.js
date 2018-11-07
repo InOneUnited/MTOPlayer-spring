@@ -18,11 +18,11 @@ function initDropbox() {
 function readBlob(file) {
 
     let reader = new FileReader();
-    let firstSong = 0;
+    let playerIndex = 0;
 
     reader.onloadend = function (event) {
         if (event.target.readyState == FileReader.DONE) {
-            var player = document.getElementsByTagName('audio')[firstSong];
+            var player = document.getElementsByTagName('audio')[playerIndex];
             player.src = "data:audio/wav;base64," + btoa(event.target.result);
             player.load();
         }
@@ -30,9 +30,14 @@ function readBlob(file) {
     reader.readAsBinaryString(file);
 }
 
-function downloadSongs(dropbox) {
+function downloadSong(dropbox, songList, number) {
 
-    dropbox.filesDownload({ path: "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3" })
+    let songPath = songList[number];
+    console.log(songPath);
+    let songObject = new Object();
+    songObject.path = songPath;
+
+    dropbox.filesDownload(songObject)
         .then(function (response) {
             readBlob(response.fileBlob);
         })
@@ -41,8 +46,15 @@ function downloadSongs(dropbox) {
         });
 }
 
-downloadSongs(initDropbox());
 
+let dropbox = initDropbox();
+let songList = ["/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3",
+    "/starfucker - bury us alive.mp3",
+    "/stoned jesus - indian.mp3"]
+
+// initialize with first song
+let currentSong = 0;
+downloadSong(dropbox, songList, currentSong);
 
 
 // PASTED AND INITIALLY CUSTOMIZED FROM 
@@ -89,6 +101,8 @@ function initPlayers() {
     var playBtn = document.getElementById('play-song');
     var pauseBtn = document.getElementById('pause-song');
     var stopBtn = document.getElementById('stop-song');
+    var prevBtn = document.getElementById('prev-song');
+    var nextBtn = document.getElementById('next-song');
 
     // Controls Listeners
     // ----------------------------------------------------------
@@ -107,6 +121,33 @@ function initPlayers() {
         var length = document.getElementById('player').duration;
         var totalLength = calculateTotalValue(length);
         document.getElementById("end-time").innerHTML = totalLength;
+    });
+    prevBtn.addEventListener('click', function () {
+
+        if (currentSong === 0) {
+            currentSong = songList[songList.length - 1];
+        } else {
+            currentSong -= 1;
+        }
+        togglePlayOff();
+        player.pause();
+        downloadSong(dropbox, songList, currentSong);
+        initProgressBar();
+        player.play();
+    });
+    nextBtn.addEventListener('click', function () {
+
+        if (currentSong === songList.length - 1) {
+            currentSong = 0;
+        } else {
+            currentSong += 1;
+        }
+        togglePlayOff();
+        player.pause();
+        document.getElementById('seekBar').value = "0";
+        downloadSong(dropbox, songList, currentSong);
+        initProgressBar();
+        player.play();
     });
 
     // Controls & Sounds Methods
