@@ -54,7 +54,7 @@ function initProgressBar() {
     var length = player.duration;
     var current_time = player.currentTime;
 
-    // calculate total length of value
+    // calculate total time length
     var totalLength = calculateTotalValue(length);
     document.getElementById("end-time").innerHTML = totalLength;
 
@@ -86,28 +86,36 @@ function initPlayers() {
     var player = document.getElementById('player');
     var isPlaying = false;
     var playBtn = document.getElementById('play-song');
+    var pauseBtn = document.getElementById('pause-song');
 
     // Controls Listeners
     // ----------------------------------------------------------
-    if (playBtn != null) {
-        playBtn.addEventListener('click', function () {
-            togglePlay()
-        });
-    }
+    playBtn.addEventListener('click', function () {
+        togglePlayOn();
+    });
+    pauseBtn.addEventListener('click', function () {
+        togglePlayOff();
+    });
+
 
     // Controls & Sounds Methods
     // ----------------------------------------------------------
-    function togglePlay() {
-        if (player.paused === false) {
-            player.pause();
-            isPlaying = false;
-            document.getElementById('play-song').className = "";
+    function togglePlayOn() {
 
-        } else {
-            player.play();
-            document.getElementById('play-song').className = "pause";
-            isPlaying = true;
-        }
+        player.play();
+        isPlaying = true;
+
+        document.getElementById('play-song').style.display = "none";
+        document.getElementById('pause-song').style.display = "block";
+    }
+
+    function togglePlayOff() {
+
+        player.pause();
+        isPlaying = false;
+
+        document.getElementById('play-song').style.display = "block";
+        document.getElementById('pause-song').style.display = "none";
     }
 }
 
@@ -118,6 +126,7 @@ function calculateTotalValue(length) {
     var second = seconds_str.substr(0, 2);
     var time = minutes + ':' + second;
 
+    console.log(time);
     return time;
 }
 
@@ -125,7 +134,8 @@ function calculateCurrentValue(currentTime) {
     var current_minute = parseInt(currentTime / 60) % 60;
     var current_seconds_long = currentTime % 60;
     var current_seconds = current_seconds_long.toFixed();
-    var current_time = (current_minute < 10 ? "0" + current_minute : current_minute) + ":" + (current_seconds < 10 ? "0" + current_seconds : current_seconds);
+    var current_time = (current_minute < 10 ? "0" + current_minute : current_minute) +
+        ":" + (current_seconds < 10 ? "0" + current_seconds : current_seconds);
 
     return current_time;
 }

@@ -65,7 +65,15 @@ header img {
 #seekBar {
     display: block;
     width: 100%;
-    height: 2px;
+    height: 10px;
+}
+
+#seekBar[value] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+    color: blue;
+    height: 5px;
 }
 
 #buttons {
@@ -83,6 +91,9 @@ header img {
     font-size: 2em;
     color: #999999;
     background-color: Transparent;
+}
+#pause-song {
+    display: none;
 }
 
 #buttons button:hover {    
