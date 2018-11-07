@@ -50,19 +50,20 @@ downloadSongs(initDropbox());
 
 
 function initProgressBar() {
-    //var player = document.getElementById('player');
-    //var length = player.duration;
+    var player = document.getElementById('player');
+    var length = player.duration;
     var current_time = player.currentTime;
 
     // calculate total time length
-    // var totalLength = calculateTotalValue(length);
-    // document.getElementById("end-time").innerHTML = totalLength;
+    var totalLength = calculateTotalValue(length);
+    document.getElementById("end-time").innerHTML = totalLength;
 
     // calculate current value time
     var currentTime = calculateCurrentValue(current_time);
     document.getElementById("start-time").innerHTML = currentTime;
 
-    var progressbar = document.getElementById('seek-object-container');
+    // progress bar
+    var progressbar = document.getElementById('seekBar');
     progressbar.value = (player.currentTime / player.duration);
     progressbar.addEventListener("click", seek);
 
@@ -76,13 +77,6 @@ function initProgressBar() {
         progressbar.value = percent / 100;
     }
 };
-
-function getTotaTime() {
-    var player = document.getElementById('player');
-    var length = player.duration;
-    var totalLength = calculateTotalValue(length);
-    document.getElementById("end-time").innerHTML = totalLength;
-}
 
 function initPlayers() {
 
@@ -127,10 +121,19 @@ function initPlayers() {
 }
 
 function calculateTotalValue(length) {
+
     var minutes = Math.floor(length / 60);
     var seconds_int = length - minutes * 60;
     var seconds_str = seconds_int.toString();
     var second = seconds_str.substr(0, 2);
+
+    if (isNaN(minutes)) {
+        minutes = "00";
+    }
+    if (second === "Na") {
+        second = "00";
+    }
+
     var time = minutes + ':' + second;
 
     console.log(time);
