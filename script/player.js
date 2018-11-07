@@ -50,13 +50,13 @@ downloadSongs(initDropbox());
 
 
 function initProgressBar() {
-    var player = document.getElementById('player');
-    var length = player.duration;
+    //var player = document.getElementById('player');
+    //var length = player.duration;
     var current_time = player.currentTime;
 
     // calculate total time length
-    var totalLength = calculateTotalValue(length);
-    document.getElementById("end-time").innerHTML = totalLength;
+    // var totalLength = calculateTotalValue(length);
+    // document.getElementById("end-time").innerHTML = totalLength;
 
     // calculate current value time
     var currentTime = calculateCurrentValue(current_time);
@@ -76,6 +76,13 @@ function initProgressBar() {
         progressbar.value = percent / 100;
     }
 };
+
+function getTotaTime() {
+    var player = document.getElementById('player');
+    var length = player.duration;
+    var totalLength = calculateTotalValue(length);
+    document.getElementById("end-time").innerHTML = totalLength;
+}
 
 function initPlayers() {
 
