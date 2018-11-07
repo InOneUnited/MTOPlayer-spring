@@ -1,0 +1,32 @@
+body {
+    background-color:#313131;
+}
+
+#login-data {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20%;
+    margin-left: 40%;
+}
+
+#login, #password {
+    width: 30%;
+    height: 5%;
+    margin-bottom: 2%;
+}
+
+#submit {
+    width: 15%;
+    height: 10%;
+    margin-left: 7.5%;
+}
+
+label {
+    color: #84FE1E;
+}
+
+button {
+    color: #84FE1E;
+    background-color: #999999;
+}
+
