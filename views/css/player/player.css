@@ -69,11 +69,12 @@ header img {
 }
 
 #seekBar[value] {
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: white;
-    color: blue;
-    height: 5px;
+    background: #FFF;
+    height: 2px;
+}
+
+#seekBar::-webkit-progress-value {
+background-color: #84FF1E;
 }
 
 #buttons {
