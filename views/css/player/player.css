@@ -56,6 +56,12 @@ header img {
     width: 60%;
 }
 
+#player-controls small {
+    margin-top: 1%;
+    font-family: monospace;
+    color: #999999;
+}
+
 #seekBar {
     display: block;
     width: 100%;
