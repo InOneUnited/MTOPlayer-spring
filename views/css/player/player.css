@@ -1,7 +1,40 @@
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-end;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 3em;
+}
+
+header img {
+    height: 10%;
+    margin: 2% 0 0 2%;
+}
+
+#logout {
+    border-style: none;
+    font-size: 1.2em;
+    color: #FFF;
+    background-color: Transparent;
+    margin: 2% 4% 0 0;
+}
+
+#logout:hover {    
+    color: #84FF1E;
+}
+
+#logout:active {
+    color: #999999;
+}
+
+#logout:focus {    
+    outline: none;
 }
 
 #player-container {
