@@ -17,13 +17,13 @@ div#content {
     margin-left: 40%;
 }
 
-#login, #password {
+/* #login, #password {
     width: 30%;
     height: 5%;
     margin-bottom: 2%;
     border: solid;
     border-color: #313131;
-}
+} */
 
 #submit {
     width: 15%;

@@ -2,7 +2,7 @@ var Dropbox = Dropbox.Dropbox;
 
 
 function initListeners() {
-    document.getElementById("submit").addEventListener("click", submit);
+    document.getElementById("submit").addEventListener("click", logWithDropBox);
     document.getElementById("firstPage").addEventListener("click",setFirstPage);
     document.getElementById("secondPage").addEventListener("click",setSecondPage);
     document.getElementById("thirdPage").addEventListener("click",setThirdPage);
@@ -10,26 +10,45 @@ function initListeners() {
 }
 
 
-function submit() {
-    let login = document.getElementById("login").value;
-    let password = document.getElementById("password").value;
+function logWithDropBox() {
+    
+    const clientId = "ca2peppfwuoyxjm";
+    const redirectURL = "http://localhost:8000/"
+    window.location.href = `https://www.dropbox.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURL}&response_type=token`;
+    
 
-    if (login == loginPattern && password == passwordPattern) {
-        var dbox = new Dropbox({ accessToken: 'ZP2-tmvGcPAAAAAAAAAAD4J9jcQkIzzzb8q0QdCC5ssPk6RkSMQnA0t4CxzLXpqd' });
+
+}
+
+function getAccessToken() {
+    var currentLocation = window.location.href;
+     debugger;
+    if (currentLocation.indexOf("access_token") != -1) {
+         
+        let accessToken = createAccessTokenFromLink(currentLocation);
+        
+        saveDBoxObjectInLocalStorage(accessToken);
+     }
+}
+
+function createAccessTokenFromLink(link) {
+    let startPosition = link.indexOf("=") + 1;
+    let endPosition = link.indexOf("&") - 1;
+    return link.slice(startPosition, endPosition);
+}
+
+
+function saveDBoxObjectInLocalStorage(access_token) {
+    var dbox = new Dropbox({ accessToken: access_token });
         let JsonToSave = JSON.stringify(dbox);
-        console.log(JsonToSave);
+        
         localStorage.removeItem("key");
         localStorage.setItem("key", JsonToSave);
         window.location.href = "player.html";
-        console.log(localStorage.getItem("key"));
-    }
 }
 
 
 function setFirstPage() {
-    // document.getElementById("firstPage").style.hover.color = "aliceblue";
-    // document.getElementById("SecondPage").style.hover.color = "#999999";
-    // document.getElementById("thirdPage").style.hover.color =  "#999999";
     
     document.getElementById("first-text").textContent = "Best music player for DropBox Users!";
     document.getElementById("second-text").textContent = "Listen Your favorite music online!";
@@ -38,9 +57,6 @@ function setFirstPage() {
 }
 
 function setSecondPage() {
-    // document.getElementById("SecondPage").style.hover.color = "aliceblue";
-    // document.getElementById("firstPage").style.hover.color = "#999999";
-    // document.getElementById("thirdPage").style.hover.color =  "#999999";
     
 
     document.getElementById("first-text").textContent = "Application created by:";
@@ -52,9 +68,6 @@ function setSecondPage() {
 }
 
 function setThirdPage() {
-    // document.getElementById("thirdPage").style.hover.color = "aliceblue";
-    // document.getElementById("firstPage").style.hover.color = "#999999";
-    // document.getElementById("secondPage").style.hover.color =  "#999999";
 
     document.getElementById("first-text").textContent = "Contact to autors:";
     document.getElementById("second-text").textContent = "krzysztof1.przybylowicz@gmail.com, krzysztof.jodlowski@gmail.com, mateusz.mazurczak@gmail.com";
@@ -64,11 +77,5 @@ function setThirdPage() {
 }
  
 
-var loginPattern = "j";  
-// "jodlaskrzychu";
-var passwordPattern = "j";
-// "jodla2018";
-
-var jsonKey = '{"key": "ZP2-tmvGcPAAAAAAAAAAD4J9jcQkIzzzb8q0QdCC5ssPk6RkSMQnA0t4CxzLXpqd"}';
-console.log("wchodzi");
 initListeners();
+getAccessToken();
