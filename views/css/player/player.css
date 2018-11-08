@@ -78,7 +78,7 @@ background-color: #84FF1E;
 }
 
 #buttons {
-    display: flex;
+    display: none;
     width: 60%;
     margin: 2% 20% 0 20%;
     flex-direction: row;
@@ -109,3 +109,21 @@ background-color: #84FF1E;
     outline: none;
 }
 
+#loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+}
+
+#loading p {
+    font-family: monospace;
+    font-size: 2em;
+    margin-right: 5%;
+    color: #999999;
+}
+
+#loading img {
+    height: 40%;
+    opacity: 0.5;
+}
