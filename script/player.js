@@ -5,9 +5,7 @@ function initDropbox(storageDboxKeyObj) {
     let dropbox = new Dropbox(storageDboxKeyObj);
 
     console.log(dropbox);
-    /*
-        { accessToken: 'ZP2-tmvGcPAAAAAAAAAACR6nmTFyT8--8lLvhiLR_YL29SCy1ES4HSMNP69cu77d' });
-    */
+    
     dropbox.filesListFolder({ path: '' })
         .then(function (response) {
             console.log(response);
