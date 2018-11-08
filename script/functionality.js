@@ -3,6 +3,52 @@
 
 /* SONGS LIBRARY */
 
+var songsNames = [];
+var songsPaths = [];
+
+function loadMusic(){
+	dropbox.filesListFolder({path: ''})
+        .then(function(response) {
+          console.log('response', response)
+          displayFiles(response.entries)
+      	})
+        .catch(function(error) {
+          console.error(error);
+        });
+}
+
+function displayFiles(files) {
+    for(let i = 0; i < files.length; i++){
+    
+        if(files[i][".tag"] === "folder"){
+    
+            let path_lower = files[i]["path_lower"];
+            dropbox.filesListFolder({path: path_lower})
+    
+            .then(function(response) {
+                displayFiles(response.entries);
+            })
+    
+            .catch(function(error) {
+                console.error(error);
+            });
+    
+        } else if(files[i][".tag"] === "file" && files[i]["name"].endsWith(".mp3")) {
+            songsNames.push(files[i]["name"]);
+            songsPaths.push(files[i]["path_lower"]);
+        }
+    }
+}
+
+function createList(){
+    loadMusic();
+    console.log("THIS IS LENGTH" + filesToList.length);
+    for (var i = 0; i < filesToList.length; i++) {
+    li = document.createElement('li');
+    li.appendChild(document.createTextNode(filesToList[i]));
+    filesList.appendChild(li);
+    }
+}
 
 /* PROGRESS BAR */
 
@@ -162,11 +208,11 @@ function changeToLoading(isLoadingNow){
 
 /* load player */
 
-function player() {
+function player(songList) {
 
-    let songList = ["/starfucker - bury us alive.mp3",
+    /*let songList = ["/starfucker - bury us alive.mp3",
         "/stoned jesus - indian.mp3",
-        "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3"];
+        "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3"];*/
 
     let currentSong = 0;
 
@@ -214,4 +260,25 @@ function downloadSong(dropbox, songList, number, callback) {
         });
 }
 
-player();
+function application(){
+	// play()
+    for(let i=0; i<songsNames.length; i++){
+		console.log(songsNames[i]);
+    }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function demo() {
+  
+	loadMusic();
+  await sleep(2000); 
+	player(songsPaths);
+}
+
+
+demo();
+
+
