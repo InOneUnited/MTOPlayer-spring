@@ -1,36 +1,21 @@
-var Dropbox = Dropbox.Dropbox;
-
-function initDropbox() {
-
-    let dropbox = new Dropbox({ accessToken: 'ZP2-tmvGcPAAAAAAAAAACR6nmTFyT8--8lLvhiLR_YL29SCy1ES4HSMNP69cu77d' });
-
-    // dropbox.filesListFolder({ path: '' })
-    //     .then(function (response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
-    return dropbox;
-}
-
-var dropbox = initDropbox();
-
-
 function loadMusic(){
+    var songsNames = [];
+    var songsPaths = [];
 	dropbox.filesListFolder({path: ''})
         .then(function(response) {
           console.log('response', response)
           displayFiles(response.entries);
-          console.log(response);
-        })
+            console.log(songsNames.length);
+            for(let i=0; i<songsNames.length; i++){
+                console.log(songsNames[i]);
+            }
+         console.log(response);
+            })
         .catch(function(error) {
           console.error(error);
         });
 }
 
-var songsNames = [];
-var songsPaths = [];
 function displayFiles(files) {
     var filesList = document.getElementById('files');
     var li;
@@ -57,11 +42,6 @@ function displayFiles(files) {
             songsPaths.push(files[i]["path_lower"]);
         }
     }
-
-    console.log(songsNames.length);
-    for(let i=0; i<songsNames.length; i++){
-        console.log(songsNames[i]);
-    }
     
 }
 
@@ -76,6 +56,7 @@ function createList(){
 }
 
 window.onload = function() {
-	createList()
+	player();
+    createList()
 
 }
