@@ -1,9 +1,13 @@
 var Dropbox = Dropbox.Dropbox;
 
-function initDropbox() {
+function initDropbox(storageDboxKeyObj) {
 
-    let dropbox = new Dropbox({ accessToken: 'ZP2-tmvGcPAAAAAAAAAACR6nmTFyT8--8lLvhiLR_YL29SCy1ES4HSMNP69cu77d' });
+    let dropbox = new Dropbox(storageDboxKeyObj);
 
+    console.log(dropbox);
+    /*
+        { accessToken: 'ZP2-tmvGcPAAAAAAAAAACR6nmTFyT8--8lLvhiLR_YL29SCy1ES4HSMNP69cu77d' });
+    */
     dropbox.filesListFolder({ path: '' })
         .then(function (response) {
             console.log(response);
@@ -29,7 +33,7 @@ function readBlob(file) {
     reader.readAsBinaryString(file);
 }
 
-function downloadSong(dropbox, songList, number) {
+function downloadSong(dropbox, songList, number, callback) {
 
     let songPath = songList[number];
     console.log(songPath);
@@ -39,6 +43,7 @@ function downloadSong(dropbox, songList, number) {
     dropbox.filesDownload(songObject)
         .then(function (response) {
             readBlob(response.fileBlob);
+            callback();
         })
         .catch(function (response) {
             console.log(response);
@@ -80,7 +85,7 @@ function initProgressBar() {
     }
 };
 
-function initPlayer(dropbox, songList, currentSong) {
+function initPlayer(dropbox, songList, currentSong, changeState) {
 
     // var playerContainer = document.getElementById('player-container');
     let player = document.getElementById('player');
@@ -113,6 +118,9 @@ function initPlayer(dropbox, songList, currentSong) {
 
     prevBtn.addEventListener('click', function () {
 
+        document.getElementById('loading').style.display = "flex";
+        document.getElementById('buttons').style.display = "none";
+
         document.getElementById('seekBar').value = 0;
         togglePlayOff();
         if (currentSong === 0) {
@@ -121,12 +129,15 @@ function initPlayer(dropbox, songList, currentSong) {
             currentSong -= 1;
         }
         // isPlaying = false;
-        downloadSong(dropbox, songList, currentSong);
+        downloadSong(dropbox, songList, currentSong, changeState);
         togglePlayOn();
         player.setAttribute('autoplay', true);
     });
 
     nextBtn.addEventListener('click', function () {
+
+        document.getElementById('loading').style.display = "flex";
+        document.getElementById('buttons').style.display = "none";
 
         document.getElementById('seekBar').value = 0;
         togglePlayOff();
@@ -136,7 +147,7 @@ function initPlayer(dropbox, songList, currentSong) {
             currentSong += 1;
         }
         // isPlaying = true;
-        downloadSong(dropbox, songList, currentSong);
+        downloadSong(dropbox, songList, currentSong, changeState);
         togglePlayOn();
         player.setAttribute('autoplay', true);
     });
@@ -186,15 +197,28 @@ function calculateCurrentTime(currentTime) {
 
 function main() {
 
-    let dropbox = initDropbox();
+    let storageDboxKeyObj = JSON.parse(localStorage.getItem('key'));
+
+    let dropbox = initDropbox(storageDboxKeyObj);
+
     let songList = ["/starfucker - bury us alive.mp3",
         "/stoned jesus - indian.mp3",
-        "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3"]
+        "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3"];
 
     // initialize with first song
     let currentSong = 0;
-    downloadSong(dropbox, songList, currentSong);
-    initPlayer(dropbox, songList, currentSong);
+
+    let changeState = function () {
+        document.getElementById('loading').style.display = "none";
+        document.getElementById('buttons').style.display = "flex";
+    }
+
+
+    downloadSong(dropbox, songList, currentSong, changeState);
+
+
+
+    initPlayer(dropbox, songList, currentSong, changeState);
 
     document.getElementById('logout').addEventListener('click', function () {
         dropbox = null;
@@ -203,4 +227,8 @@ function main() {
 }
 
 main();
+
+
+
+
 

@@ -1,0 +1,135 @@
+body {
+    /* background-color:#313131; */
+    background-image: url("../../../resources/images/back.jpg");
+    background-position: center;
+    background-size: 100%;
+}
+
+div#content {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-data {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-left: 40%;
+}
+
+#login, #password {
+    width: 30%;
+    height: 5%;
+    margin-bottom: 2%;
+    border: solid;
+    border-color: #313131;
+}
+
+#submit {
+    width: 15%;
+    height: 10%;
+    margin-left: 7.5%;
+    border: solid;
+    border-color: #313131;
+}
+
+#submit:hover {
+    background-color: #313131;
+    cursor: pointer;
+}
+ 
+label {
+    color:aliceblue;
+}
+
+button {
+    color:aliceblue;
+    background-color: #999999;
+}
+
+#logo-image {
+    margin-top: 5%;
+    margin-left: 3%;
+    /*width: 30%;*/
+    height: 20%;
+}
+
+#about-us {
+    width: 100%;
+    height: 30%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #313131;
+    opacity: 0.5;
+    border-radius: 10px;
+    
+}
+
+#about-us-nav{
+    display: flex;
+    margin-top: 3%;
+    color: aliceblue;
+}
+
+.far.fa-circle{
+    padding: 1%;
+    margin-top: 2%;
+    padding-right: 10%;
+    text-align: center;
+    
+}
+
+p{
+    padding-top: 10%;
+    margin: 10%;
+    font-size: 30px;
+    margin-bottom: 20%;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    color:white;
+}
+
+#firstPage {
+
+    position: absolute;
+    top: 70%;
+    bottom: 10%;
+    left: 48%;
+    
+}
+
+
+#firstPage:hover {
+    color:  aliceblue;
+    
+}
+
+#secondPage{
+    position: absolute;
+    top: 70%;
+    bottom: 10%;
+    left: 50%;
+    
+}
+
+#secondPage:hover{
+    color: #999999;
+    cursor: pointer;
+
+}
+
+#thirdPage{
+    position: absolute;
+    top: 70%;
+    bottom: 10%;
+    left: 52%;
+}
+
+#thirdPage:hover {
+    color: #999999;
+    cursor: pointer;
+}
+
