@@ -7,12 +7,52 @@
     <title>Dbox Player</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="views/css/main.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="views/playlist/playlist.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="views/css/player/player.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="views/css/playlist/playlist.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.12/Dropbox-sdk.js"></script>
     <script src="script/playlist.js"></script>
+<!--     <script src="script/player.js" defer></script>
+ -->
 </head>
 
 <body>
+    <header>
+        <img src="resources/images/logo.png" alt="logo">
+        <button type="button" id="logout"><i class="fa fa-power-off" aria-hidden="true"></i></button>
+    </header>
+
+    <div id="content">
+        <ul id="files"></ul>
+    </div>
+
+    <!-- PASTED AND CUSTOMIZED FROM https://gist.githubusercontent.com/lukewduncan/3e041e4b22a50855f9faaf01dec40137/raw/b03fff5a96584e69ba1bf9e25eafc1ea20b58c09/audio-player.html -->
+
+    <footer id="player-bar">
+        <div class="audio-wrapper" id="player-container" href="javascript:;">
+            <audio id="player" ontimeupdate="initProgressBar()">
+                <!-- controls autoplay -->
+                <source src="" type="audio/mpeg">
+            </audio>
+        </div>
+        <div id="player-controls">
+            <!--original class: player-controls scrubber-->
+            <span id="seek-object-container">
+                <!--original id: seek-obj-container-->
+                <progress id="seekBar" value="0" max="1"></progress>
+            </span>
+            <small style="float: left; position: relative; left: 15px;" id="start-time">00:00</small>
+            <small style="float: right; position: relative; right: 20px;" id="end-time">00:00</small>
+            <span id="buttons">
+                <button type="button" id="prev-song"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                <button type="button" id="play-song"><i class="fa fa-play" aria-hidden="true"></i></button>
+                <!-- original id: play-btn -->
+                <button type="button" id="pause-song"><i class="fa fa-pause" aria-hidden="true"></i></button>
+                <button type="button" id="stop-song"><i class="fa fa-stop" aria-hidden="true"></i></button>
+                <button type="button" id="next-song"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+            </span>
+        </div>
+    </footer>
 
 </body>
 
