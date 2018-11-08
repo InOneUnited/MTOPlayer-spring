@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="views/css/player/player.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.12/Dropbox-sdk.js"></script>
-    <script src="script/player.js" defer></script>
+    <script src="script/initialization.js" defer></script>
+    <script src="script/functionality.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
 
     <footer id="player-bar">
         <div class="audio-wrapper" id="player-container" href="javascript:;">
-            <audio id="player" ontimeupdate="initProgressBar()">
+            <audio id="player" ontimeupdate="updateProgressBar()">
                 <!-- controls autoplay -->
                 <source src="" type="audio/mpeg">
             </audio>
