@@ -1,9 +1,13 @@
 var Dropbox = Dropbox.Dropbox;
 
-function initDropbox() {
+function initDropbox(storageDboxKeyObj) {
 
-    let dropbox = new Dropbox({ accessToken: 'ZP2-tmvGcPAAAAAAAAAACR6nmTFyT8--8lLvhiLR_YL29SCy1ES4HSMNP69cu77d' });
+    let dropbox = new Dropbox(storageDboxKeyObj);
 
+    console.log(dropbox);
+    /*
+        { accessToken: 'ZP2-tmvGcPAAAAAAAAAACR6nmTFyT8--8lLvhiLR_YL29SCy1ES4HSMNP69cu77d' });
+    */
     dropbox.filesListFolder({ path: '' })
         .then(function (response) {
             console.log(response);
@@ -186,7 +190,11 @@ function calculateCurrentTime(currentTime) {
 
 function main() {
 
-    let dropbox = initDropbox();
+    // let's play with localStorage:p
+    let storageDboxKeyObj = JSON.parse(localStorage.getItem('key'));
+
+    let dropbox = initDropbox(storageDboxKeyObj);
+
     let songList = ["/starfucker - bury us alive.mp3",
         "/stoned jesus - indian.mp3",
         "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3"]
