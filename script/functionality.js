@@ -140,7 +140,7 @@ function setEventStop(player) {
 
 function setEventPrev(player, songList, changeState) {
 	document.getElementById('prev-song').addEventListener('click', function () {
-        debugger;
+        
     	changeState();
 
         document.getElementById('seekBar').value = 0;
@@ -161,7 +161,7 @@ function setEventPrev(player, songList, changeState) {
 
 function setEventNext(player, songList, changeState) {
 	document.getElementById('next-song').addEventListener('click', function () {
-        debugger;
+        
     	changeState();
 
         document.getElementById('seekBar').value = 0;
@@ -253,13 +253,22 @@ function changeSongDisplay(lastSongNumber){
     console.log("CURRENT: " + currentSong);
     console.log("Last: " + lastSongNumber);
     let oldSongNumber = currentSong+lastSongNumber;
-    debugger;
+    
     if(lastSongNumber === 0){
         document.getElementsByTagName("li")[currentSong].classList.add("active");
     } else {
-        document.getElementsByTagName("li")[oldSongNumber].classList.remove("active");
-        document.getElementsByTagName("li")[currentSong].classList.add("active");
-
+        if(currentSong === songsNames.length-1 && lastSongNumber === 1){
+            debugger;
+            document.getElementsByTagName("li")[0].classList.remove("active");
+            document.getElementsByTagName("li")[currentSong].classList.add("active");
+        }else if (currentSong === 0 && lastSongNumber === -1){
+            debugger;
+            document.getElementsByTagName("li")[songsNames.length-1].classList.remove("active");
+            document.getElementsByTagName("li")[currentSong].classList.add("active");     
+        } else {
+            document.getElementsByTagName("li")[oldSongNumber].classList.remove("active");
+            document.getElementsByTagName("li")[currentSong].classList.add("active");
+        }
     }
 }
 
@@ -280,13 +289,6 @@ function downloadSong(dropbox, songList, lastSongNumber, callback) {
         });
 }
 
-function application(){
-	// play()
-    for(let i=0; i<songsNames.length; i++){
-		console.log(songsNames[i]);
-    }
-}
-
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -294,7 +296,7 @@ function sleep(ms) {
 async function demo() {
   
 	loadMusic();
-  await sleep(2000); 
+  await sleep(5000); 
     createList(songsNames);
 	player(songsPaths);
 }
