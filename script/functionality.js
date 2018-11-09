@@ -193,7 +193,14 @@ function playMusic(player, isPlaying) {
         document.getElementById('pause-song').style.display = "none";	
 	}
 }
-
+function findRow(node)
+{
+    var i = 1;
+    while (node = node.previousSibling) {
+        if (node.nodeType === 1) { ++i }
+    }
+    return i;
+}
 function initPlayer(dropbox, songList, changeState) {
 
     let player = document.getElementById('player');
@@ -202,7 +209,17 @@ function initPlayer(dropbox, songList, changeState) {
     setEventPause(player);
     setEventStop(player);
     setEventNext(player, songList, changeState);
-    setEventPrev(player, songList, changeState);    
+    setEventPrev(player, songList, changeState);
+    for(let i=0; i<document.getElementsByTagName("li").length; i++){
+        document.getElementsByTagName("li")[i].addEventListener("click", function(){
+            let oldSong = currentSong;
+            let num = findRow(this)-2; // 1 - array index, 2 - next button is skipping one song
+            currentSong = num;
+            document.getElementById("next-song").click();
+            document.getElementsByTagName("li")[oldSong].classList.remove("active");
+        })
+    }
+        
 }
 
 function changeToLoading(isLoadingNow){
@@ -219,9 +236,6 @@ function changeToLoading(isLoadingNow){
 
 function player(songList) {
 
-    /*let songList = ["/starfucker - bury us alive.mp3",
-        "/stoned jesus - indian.mp3",
-        "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3"];*/
     downloadSong(dropbox, songList, 0, () => changeToLoading(false));
     initPlayer(dropbox, songList, () => changeToLoading(true));
 
