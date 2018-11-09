@@ -5,7 +5,7 @@
 
 var songsNames = [];
 var songsPaths = [];
-
+var currentSong = 0;
 function loadMusic(){
 	dropbox.filesListFolder({path: ''})
         .then(function(response) {
@@ -40,11 +40,11 @@ function displayFiles(files) {
     }
 }
 
-function createList(){
-    loadMusic();
+function createList(filesToList){
+    let filesList = document.getElementById("files");
     console.log("THIS IS LENGTH" + filesToList.length);
     for (var i = 0; i < filesToList.length; i++) {
-    li = document.createElement('li');
+    let li = document.createElement('li');
     li.appendChild(document.createTextNode(filesToList[i]));
     filesList.appendChild(li);
     }
@@ -138,9 +138,9 @@ function setEventStop(player) {
     });
 }
 
-function setEventPrev(player, songList, currentSong, changeState) {
+function setEventPrev(player, songList, changeState) {
 	document.getElementById('prev-song').addEventListener('click', function () {
-
+        debugger;
     	changeState();
 
         document.getElementById('seekBar').value = 0;
@@ -150,14 +150,18 @@ function setEventPrev(player, songList, currentSong, changeState) {
         } else {
             currentSong -= 1;
         }
-        downloadSong(dropbox, songList, currentSong, () => changeToLoading(false));
+        let prev = 1;
+        downloadSong(dropbox, songList, prev, () => changeToLoading(false));
+        
         playMusic(player, true);
+        
         player.setAttribute('autoplay', true);
     });
 }
 
-function setEventNext(player, songList, currentSong, changeState) {
+function setEventNext(player, songList, changeState) {
 	document.getElementById('next-song').addEventListener('click', function () {
+        debugger;
     	changeState();
 
         document.getElementById('seekBar').value = 0;
@@ -167,8 +171,13 @@ function setEventNext(player, songList, currentSong, changeState) {
         } else {
             currentSong += 1;
         }
-        downloadSong(dropbox, songList, currentSong, () => changeToLoading(false));
+
+        let next = -1;
+
+        downloadSong(dropbox, songList, next, () => changeToLoading(false));
+
         playMusic(player, true);
+        
         player.setAttribute('autoplay', true);
     });
 }
@@ -185,15 +194,15 @@ function playMusic(player, isPlaying) {
 	}
 }
 
-function initPlayer(dropbox, songList, currentSong, changeState) {
+function initPlayer(dropbox, songList, changeState) {
 
     let player = document.getElementById('player');
 
     setEventPlay(player);
     setEventPause(player);
     setEventStop(player);
-    setEventNext(player, songList, currentSong, changeState);
-    setEventPrev(player, songList, currentSong, changeState);    
+    setEventNext(player, songList, changeState);
+    setEventPrev(player, songList, changeState);    
 }
 
 function changeToLoading(isLoadingNow){
@@ -213,11 +222,8 @@ function player(songList) {
     /*let songList = ["/starfucker - bury us alive.mp3",
         "/stoned jesus - indian.mp3",
         "/dee_yan-key_-_02_-_winter_is_coming_adagio_-_first_snow.mp3"];*/
-
-    let currentSong = 0;
-
-    downloadSong(dropbox, songList, currentSong, () => changeToLoading(false));
-    initPlayer(dropbox, songList, currentSong, () => changeToLoading(true));
+    downloadSong(dropbox, songList, 0, () => changeToLoading(false));
+    initPlayer(dropbox, songList, () => changeToLoading(true));
 
     document.getElementById('logout').addEventListener('click', function () {
         dropbox = null;
@@ -243,16 +249,30 @@ function readBlob(file) {
     reader.readAsBinaryString(file);
 }
 
-function downloadSong(dropbox, songList, number, callback) {
+function changeSongDisplay(lastSongNumber){
+    console.log("CURRENT: " + currentSong);
+    console.log("Last: " + lastSongNumber);
+    let oldSongNumber = currentSong+lastSongNumber;
+    debugger;
+    if(lastSongNumber === 0){
+        document.getElementsByTagName("li")[currentSong].classList.add("active");
+    } else {
+        document.getElementsByTagName("li")[oldSongNumber].classList.remove("active");
+        document.getElementsByTagName("li")[currentSong].classList.add("active");
 
-    let songPath = songList[number];
+    }
+}
+
+function downloadSong(dropbox, songList, lastSongNumber, callback) {
+
+    let songPath = songList[currentSong];
     console.log(songPath);
     let songObject = new Object();
     songObject.path = songPath;
-
     dropbox.filesDownload(songObject)
         .then(function (response) {
             readBlob(response.fileBlob);
+            changeSongDisplay(lastSongNumber);
             callback();
         })
         .catch(function (response) {
@@ -275,6 +295,7 @@ async function demo() {
   
 	loadMusic();
   await sleep(2000); 
+    createList(songsNames);
 	player(songsPaths);
 }
 

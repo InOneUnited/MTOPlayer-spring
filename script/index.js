@@ -16,8 +16,6 @@ function logWithDropBox() {
     const redirectURL = "http://localhost:8000/"
     window.location.href = `https://www.dropbox.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURL}&response_type=token`;
     
-
-
 }
 
 function getAccessToken() {
@@ -26,14 +24,13 @@ function getAccessToken() {
     if (currentLocation.indexOf("access_token") != -1) {
          
         let accessToken = createAccessTokenFromLink(currentLocation);
-        
         saveDBoxObjectInLocalStorage(accessToken);
      }
 }
 
 function createAccessTokenFromLink(link) {
     let startPosition = link.indexOf("=") + 1;
-    let endPosition = link.indexOf("&") - 1;
+    let endPosition = link.indexOf("&");
     return link.slice(startPosition, endPosition);
 }
 
