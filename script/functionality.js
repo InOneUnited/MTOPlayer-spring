@@ -45,7 +45,7 @@ function createList(filesToList){
     console.log("THIS IS LENGTH" + filesToList.length);
     for (var i = 0; i < filesToList.length; i++) {
     let li = document.createElement('li');
-    li.appendChild(document.createTextNode(filesToList[i]));
+    li.appendChild(document.createTextNode(filesToList[i].slice(0,-4)));
     filesList.appendChild(li);
     }
 }
