@@ -13,7 +13,7 @@ function initListeners() {
 function logWithDropBox() {
 
     const clientId = "ca2peppfwuoyxjm";
-    const redirectURL = "https://krzysiekjodlowski.github.io/KMK_Dbox_Player/"
+    const redirectURL = "https://inoneunited.github.io/KMK_Dbox_Player/"
     window.location.href = `https://www.dropbox.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURL}&response_type=token`;
 
 }
