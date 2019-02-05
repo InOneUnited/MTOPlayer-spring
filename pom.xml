@@ -26,11 +26,49 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+          <version>3.1.0</version>
+      </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+      <dependency>
+          <groupId>javax.persistence</groupId>
+          <artifactId>persistence-api</artifactId>
+          <version>1.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>5.2.10.Final</version>
+      </dependency>
   </dependencies>
 
   <build>
     <finalName>allPlayer</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+
+    <filters>
+      <filter>src/main/resources/META-INF/persistence.properties</filter>
+    </filters>
+
+    <resources>
+      <resource>
+        <directory>src/main/resources/META-INF</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+
+    <pluginManagement><!-- lock down plugns versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -65,3 +103,4 @@
     </pluginManagement>
   </build>
 </project>
+

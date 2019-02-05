@@ -113,5 +113,6 @@ $tf/
 
 # Custom
 top secret
-
-
+**/src/main/java/createTESTDB/
+**/src/main/resources/META-INF/persistence.properties
+**/src/main/security/
