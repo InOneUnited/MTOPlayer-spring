@@ -4,9 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Salt")
+@NamedQuery(name="allSaltsQuery", query="select t from Salt t")
 public class Salt {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
@@ -14,7 +15,36 @@ public class Salt {
     private String salt;
 
     @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="user_id")
     private User user;
 
+    public Salt(){}
+
+    public Salt(String salt, User user) {
+        this.salt = salt;
+        this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

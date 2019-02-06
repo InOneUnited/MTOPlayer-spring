@@ -122,7 +122,6 @@ top secret
 .idea/
 .idea/workspace.xml
 target/
-src/main/java/createTESTDB/
 src/main/resources/META-INF/persistence.properties
 src/main/security/
 allPlayer.iml

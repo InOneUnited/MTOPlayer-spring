@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "Sessions")
 public class Session {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -23,6 +23,13 @@ public class Session {
     @JoinColumn(name="user_id")
     private User user;
 
+    public Session() {}
+
+    public Session(Date startDate, Date expirationDate, User user) {
+        this.startDate = startDate;
+        this.expirationDate = expirationDate;
+        this.user = user;
+    }
 
     public int getId() {
         return id;

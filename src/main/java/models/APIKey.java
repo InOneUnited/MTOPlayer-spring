@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="APIkeys")
+@NamedQuery(name="allAPIKeysQuery", query="select t from APIKey t")
 public class APIKey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +15,14 @@ public class APIKey {
     private String apiToken;
 
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "user_id")
     private User user;
+
+    public APIKey(){}
+
+    public APIKey(String apiToken, User user) {
+        this.apiToken = apiToken;
+        this.user = user;
+    }
 
     public int getId() {
         return id;
