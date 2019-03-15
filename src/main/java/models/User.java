@@ -24,6 +24,9 @@ public class User {
     @OneToOne(cascade = {CascadeType.ALL}, mappedBy = "user")
     private Password password;
 
+    @OneToOne(cascade = {CascadeType.ALL}, mappedBy = "user")
+    private UserInfo userInfo;
+
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<Session> sessions;
 
@@ -32,13 +35,14 @@ public class User {
 
     public User() {}
 
-    public User(String userLogin, String email, List<APIKey> apiKeys, Password password, Salt salt, List<Session> sessions, List<Playlist> playlists) {
+    public User(String userLogin, String email, List<APIKey> apiKeys, Password password, Salt salt, List<Session> sessions, List<Playlist> playlists, UserInfo userInfo) {
         this.userLogin = userLogin;
         this.email = email;
         this.apiKeys = apiKeys;
         this.password = password;
         this.sessions = sessions;
         this.playlists = playlists;
+        this.userInfo = userInfo;
     }
 
     public int getId() {
@@ -95,5 +99,13 @@ public class User {
 
     public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 }
