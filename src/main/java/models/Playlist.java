@@ -21,7 +21,7 @@ public class Playlist {
     @Column(name = "creation_day")
     private Date creationDay;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     @Column(name = "creation_time")
     private Time creationTime;
 

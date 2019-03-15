@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -12,12 +13,23 @@ public class Session {
     private int id;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "start_date")
-    private Date startDate;
+    @Column(name = "date_start")
+    private Date dateStart;
 
+    @Temporal(TemporalType.TIME)
+    @Column(name = "time_start")
+    private Time timeStart;
+    
     @Temporal(TemporalType.DATE)
-    @Column(name = "expiration_date")
-    private Date expirationDate;
+    @Column(name = "date_expiration")
+    private Date dateExpiration;
+
+    @Temporal(TemporalType.TIME)
+    @Column(name = "time_expiration")
+    private Time timeExpiration;
+
+    @Column(name = "ip")
+    private String ip;
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="user_id")
@@ -25,9 +37,12 @@ public class Session {
 
     public Session() {}
 
-    public Session(Date startDate, Date expirationDate, User user) {
-        this.startDate = startDate;
-        this.expirationDate = expirationDate;
+    public Session(Date dateStart, Time timeStart, Date dateExpiration, Time timeExpiration, String ip, User user) {
+        this.dateStart = dateStart;
+        this.timeStart = timeStart;
+        this.dateExpiration = dateExpiration;
+        this.timeExpiration = timeExpiration;
+        this.ip = ip;
         this.user = user;
     }
 
@@ -39,20 +54,20 @@ public class Session {
         this.id = id;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getdateStart() {
+        return dateStart;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setdateStart(Date dateStart) {
+        this.dateStart = dateStart;
     }
 
-    public Date getExpirationDate() {
-        return expirationDate;
+    public Date getdateExpiration() {
+        return dateExpiration;
     }
 
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
+    public void setdateExpiration(Date dateExpiration) {
+        this.dateExpiration = dateExpiration;
     }
 
     public User getUser() {
@@ -61,5 +76,21 @@ public class Session {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Time getTimeStart() {
+        return timeStart;
+    }
+
+    public void setTimeStart(Time timeStart) {
+        this.timeStart = timeStart;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 }
