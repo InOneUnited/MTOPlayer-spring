@@ -25,8 +25,10 @@ public class APIKey {
 
     public APIKey(){}
 
-    public APIKey(String apiToken, User user) {
+    public APIKey(String apiToken, String apiUsername, String apiName, User user) {
         this.apiToken = apiToken;
+        this.apiUsername = apiUsername;
+        this.apiName = apiName;
         this.user = user;
     }
 

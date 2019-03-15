@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -17,8 +18,12 @@ public class Playlist {
     private String playlistName;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "creation_date")
-    private Date creationDate;
+    @Column(name = "creation_day")
+    private Date creationDay;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "creation_time")
+    private Time creationTime;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     private User user;
@@ -73,5 +78,21 @@ public class Playlist {
 
     public void setSongs(List<Song> songs) {
         this.songs = songs;
+    }
+
+    public Date getCreationDay() {
+        return creationDay;
+    }
+
+    public void setCreationDay(Date creationDay) {
+        this.creationDay = creationDay;
+    }
+
+    public Time getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Time creationTime) {
+        this.creationTime = creationTime;
     }
 }
