@@ -93,4 +93,12 @@ public class Session {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
+    public Time getTimeExpiration() {
+        return timeExpiration;
+    }
+
+    public void setTimeExpiration(Time timeExpiration) {
+        this.timeExpiration = timeExpiration;
+    }
 }
