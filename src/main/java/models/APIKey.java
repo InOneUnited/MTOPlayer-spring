@@ -3,7 +3,7 @@ package models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="APIkeys")
+@Table(name="APIKey")
 @NamedQuery(name="allAPIKeysQuery", query="select t from APIKey t")
 public class APIKey {
     @Id
@@ -13,6 +13,12 @@ public class APIKey {
 
     @Column(name="token")
     private String apiToken;
+
+    @Column(name="api_username")
+    private String apiUsername;
+
+    @Column(name="api_name")
+    private String apiName;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     private User user;
@@ -46,5 +52,21 @@ public class APIKey {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getApiUsername() {
+        return apiUsername;
+    }
+
+    public void setApiUsername(String apiUsername) {
+        this.apiUsername = apiUsername;
+    }
+
+    public String getApiName() {
+        return apiName;
+    }
+
+    public void setApiName(String apiName) {
+        this.apiName = apiName;
     }
 }
