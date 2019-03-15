@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
 
     @Column(name="login")
@@ -18,16 +18,16 @@ public class User {
     @Column(name="email")
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<APIKey> apiKeys;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
+    @OneToOne(cascade = {CascadeType.ALL}, mappedBy = "user")
     private Password password;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<Session> sessions;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<Playlist> playlists;
 
     public User() {}

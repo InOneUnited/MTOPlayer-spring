@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.util.Date;
 
 @Entity
-@Table(name = "Sessions")
+@Table(name = "Session")
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,26 +13,26 @@ public class Session {
     private int id;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_start")
+    @Column(name = "start_day")
     private Date dateStart;
 
     @Temporal(TemporalType.TIME)
-    @Column(name = "time_start")
+    @Column(name = "start_time")
     private Time timeStart;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_expiration")
+    @Column(name = "expiration_day")
     private Date dateExpiration;
 
     @Temporal(TemporalType.TIME)
-    @Column(name = "time_expiration")
+    @Column(name = "expiration_time")
     private Time timeExpiration;
 
     @Column(name = "ip")
     private String ip;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="login_id")
     private User user;
 
     public Session() {}

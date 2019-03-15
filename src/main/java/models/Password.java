@@ -3,21 +3,22 @@ package models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Passwords")
+@Table(name = "Password")
 @NamedQuery(name="allPasswordsQuery", query="select t from Password t")
 public class Password {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id", nullable = false)
     private int id;
 
     @Column(name="password")
     private String password;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @MapsId
+    @OneToOne
+    @JoinColumn(name="login_id")
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "password")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "password")
     private Salt salt;
 
     public Password() { }

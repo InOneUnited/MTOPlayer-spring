@@ -21,10 +21,11 @@ public class APIKey {
     @Column(name="api_name")
     private String apiName;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="login_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "apiKey")
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "apiKey")
     private List<Song> songs;
 
     public APIKey(){}

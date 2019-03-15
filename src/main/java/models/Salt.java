@@ -11,10 +11,12 @@ public class Salt {
     @Column(name="id")
     private int id;
 
-    @Column(name = "content")
+    @Column(name = "salt")
     private String salt;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @MapsId
+    @OneToOne
+    @JoinColumn(name = "password_id")
     private Password password;
 
     public Salt(){}

@@ -4,9 +4,10 @@ import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Playlists")
+@Table(name = "Playlist")
 @NamedQuery(name="allPlaylistsQuery", query="select t from Playlist t")
 public class Playlist {
     @Id
@@ -25,16 +26,17 @@ public class Playlist {
     @Column(name = "creation_time")
     private Time creationTime;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="login_id")
     private User user;
 
-    @ManyToMany(mappedBy = "playlist")
-    private List<Song> songs;
+    @ManyToMany(mappedBy = "playlists")
+    private Set<Song> songs;
 
 
     public Playlist(){}
 
-    public Playlist(String playlistName, Date creationDay, Time creationTime, User user, List<Song> songs) {
+    public Playlist(String playlistName, Date creationDay, Time creationTime, User user, Set<Song> songs) {
         this.playlistName = playlistName;
         this.creationDay = creationDay;
         this.creationTime = creationTime;
@@ -66,11 +68,11 @@ public class Playlist {
         this.user = user;
     }
 
-    public List<Song> getSongs() {
+    public Set<Song> getSongs() {
         return songs;
     }
 
-    public void setSongs(List<Song> songs) {
+    public void setSongs(Set<Song> songs) {
         this.songs = songs;
     }
 

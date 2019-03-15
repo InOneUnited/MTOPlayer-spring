@@ -2,9 +2,10 @@ package models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Songs")
+@Table(name = "Song")
 @NamedQuery(name="allSongsQuery", query="select t from Song t")
 public class Song {
     @Id
@@ -12,8 +13,12 @@ public class Song {
     @Column(name = "id")
     private int id;
 
-    @ManyToMany(cascade = {CascadeType.REMOVE})
-    private List<Playlist> playlists;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name="playlist_song",
+            joinColumns = {@JoinColumn(name="song_id")},
+            inverseJoinColumns = {@JoinColumn(name="playlist_id")})
+    private Set<Playlist> playlists;
 
     @Column(name = "name")
     private String songName;
@@ -21,12 +26,13 @@ public class Song {
     @Column(name="link")
     private String songLink;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="apikey_id")
     private APIKey apiKey;
 
     public Song(){}
 
-    public Song(List<Playlist> playlists, String songName, String songLink, APIKey apiKey) {
+    public Song(Set<Playlist> playlists, String songName, String songLink, APIKey apiKey) {
         this.playlists = playlists;
         this.songName = songName;
         this.songLink = songLink;
@@ -57,11 +63,19 @@ public class Song {
         this.songLink = songLink;
     }
 
-    public List<Playlist> getPlaylists() {
+    public Set<Playlist> getPlaylists() {
         return playlists;
     }
 
-    public void setPlaylists(List<Playlist> playlists) {
+    public void setPlaylists(Set<Playlist> playlists) {
         this.playlists = playlists;
+    }
+
+    public APIKey getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(APIKey apiKey) {
+        this.apiKey = apiKey;
     }
 }
