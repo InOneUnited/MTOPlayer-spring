@@ -15,13 +15,13 @@ public class Salt {
     private String salt;
 
     @OneToOne(cascade = {CascadeType.ALL})
-    private User user;
+    private Password password;
 
     public Salt(){}
 
-    public Salt(String salt, User user) {
+    public Salt(String salt, Password password) {
         this.salt = salt;
-        this.user = user;
+        this.password = password;
     }
 
     public int getId() {
@@ -40,11 +40,11 @@ public class Salt {
         this.salt = salt;
     }
 
-    public User getUser() {
-        return user;
+    public Password getPassword() {
+        return password;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPassword(Password password) {
+        this.password = password;
     }
 }

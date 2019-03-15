@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Songs")
@@ -11,29 +12,25 @@ public class Song {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE})
-    private Playlist playlist;
-
-    @ManyToOne(cascade = {CascadeType.ALL})
-    private User user;
+    @ManyToMany(cascade = {CascadeType.REMOVE})
+    private List<Playlist> playlists;
 
     @Column(name = "name")
     private String songName;
 
-    @Column(name="provider")
-    private String songProvider;
-
     @Column(name="link")
     private String songLink;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private APIKey apiKey;
+
     public Song(){}
 
-    public Song(Playlist playlist, User user, String songName, String songProvider, String songLink) {
-        this.playlist = playlist;
-        this.user = user;
+    public Song(List<Playlist> playlists, String songName, String songLink, APIKey apiKey) {
+        this.playlists = playlists;
         this.songName = songName;
-        this.songProvider = songProvider;
         this.songLink = songLink;
+        this.apiKey = apiKey;
     }
 
     public int getId() {
@@ -44,22 +41,6 @@ public class Song {
         this.id = id;
     }
 
-    public Playlist getPlaylist() {
-        return playlist;
-    }
-
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public String getSongName() {
         return songName;
     }
@@ -68,19 +49,19 @@ public class Song {
         this.songName = songName;
     }
 
-    public String getSongProvider() {
-        return songProvider;
-    }
-
-    public void setSongProvider(String songProvider) {
-        this.songProvider = songProvider;
-    }
-
     public String getSongLink() {
         return songLink;
     }
 
     public void setSongLink(String songLink) {
         this.songLink = songLink;
+    }
+
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
     }
 }

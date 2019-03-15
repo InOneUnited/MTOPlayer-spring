@@ -28,8 +28,9 @@ public class Playlist {
     @ManyToOne(cascade = {CascadeType.ALL})
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "playlist")
+    @ManyToMany(mappedBy = "playlist")
     private List<Song> songs;
+
 
     public Playlist(){}
 

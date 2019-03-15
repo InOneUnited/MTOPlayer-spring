@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="APIKey")
@@ -22,6 +23,9 @@ public class APIKey {
 
     @ManyToOne(cascade = {CascadeType.ALL})
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "apiKey")
+    private List<Song> songs;
 
     public APIKey(){}
 

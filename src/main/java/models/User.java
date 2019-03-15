@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "Login")
 @NamedQuery(name="allUsersQuery", query="select t from User t")
 public class User {
     @Id
@@ -15,34 +15,30 @@ public class User {
     @Column(name="login")
     private String userLogin;
 
+    @Column(name="email")
+    private String email;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<APIKey> apiKeys;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
     private Password password;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
-    private Salt salt;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
-    private Session session;
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
+    private List<Session> sessions;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<Playlist> playlists;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "user")
-    private List<Song> songs;
-
     public User() {}
 
-    public User(String userLogin, List<APIKey> apiKeys, Password password, Salt salt, Session session, List<Playlist> playlists, List<Song> songs) {
+    public User(String userLogin, String email, List<APIKey> apiKeys, Password password, Salt salt, List<Session> sessions, List<Playlist> playlists) {
         this.userLogin = userLogin;
+        this.email = email;
         this.apiKeys = apiKeys;
         this.password = password;
-        this.salt = salt;
-        this.session = session;
+        this.sessions = sessions;
         this.playlists = playlists;
-        this.songs = songs;
     }
 
     public int getId() {
@@ -77,22 +73,6 @@ public class User {
         this.password = password;
     }
 
-    public Salt getSalt() {
-        return salt;
-    }
-
-    public void setSalt(Salt salt) {
-        this.salt = salt;
-    }
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
     public List<Playlist> getPlaylists() {
         return playlists;
     }
@@ -101,11 +81,19 @@ public class User {
         this.playlists = playlists;
     }
 
-    public List<Song> getSongs() {
-        return songs;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 }
