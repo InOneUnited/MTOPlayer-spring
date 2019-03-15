@@ -33,9 +33,10 @@ public class Playlist {
 
     public Playlist(){}
 
-    public Playlist(String playlistName, Date creationDate, User user, List<Song> songs) {
+    public Playlist(String playlistName, Date creationDay, Time creationTime, User user, List<Song> songs) {
         this.playlistName = playlistName;
-        this.creationDate = creationDate;
+        this.creationDay = creationDay;
+        this.creationTime = creationTime;
         this.user = user;
         this.songs = songs;
     }
