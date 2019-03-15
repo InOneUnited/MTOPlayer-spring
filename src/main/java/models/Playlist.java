@@ -57,14 +57,6 @@ public class Playlist {
         this.playlistName = playlistName;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public User getUser() {
         return user;
     }
