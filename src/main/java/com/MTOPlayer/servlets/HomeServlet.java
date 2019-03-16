@@ -1,17 +1,15 @@
 package com.MTOPlayer.servlets;
 
-import org.springframework.ui.ModelMap;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
-@RequestMapping("/hello")
+@Controller
 public class HomeServlet {
-    @RequestMapping(method = RequestMethod.GET)
-    public String printHello(ModelMap model){
-        model.addAttribute("message", "Hello Spring MVC");
-        return "hello";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String printHello(Model model){
+        return "index";
     }
 }
