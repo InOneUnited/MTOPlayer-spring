@@ -6,13 +6,13 @@
 
     <persistence-unit name="MTOplayer" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>models.APIKey</class>
-        <class>models.Session</class>
-        <class>models.User</class>
-        <class>models.Playlist</class>
-        <class>models.Song</class>
-        <class>models.Password</class>
-        <class>models.Salt</class>
+        <class>com.MTOPlayer.models.APIKey</class>
+        <class>com.MTOPlayer.models.Session</class>
+        <class>com.MTOPlayer.models.User</class>
+        <class>com.MTOPlayer.models.Playlist</class>
+        <class>com.MTOPlayer.models.Song</class>
+        <class>com.MTOPlayer.models.Password</class>
+        <class>com.MTOPlayer.models.Salt</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>

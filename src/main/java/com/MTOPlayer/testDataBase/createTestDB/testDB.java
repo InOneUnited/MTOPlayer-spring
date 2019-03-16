@@ -1,14 +1,4 @@
-package testDataBase.createTestDB;
-
-import models.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+package com.MTOPlayer.testDataBase.createTestDB;
 
 /*IT'S NOT ACTUAL, IT NEEDS TO BE UPDATED. ACTUAL VERSION IN SQL IS IN FOLDER sqlDDL.*/
 

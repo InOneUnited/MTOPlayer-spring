@@ -1,4 +1,4 @@
-package models;
+package com.MTOPlayer.models;
 
 import javax.persistence.*;
 import java.util.List;

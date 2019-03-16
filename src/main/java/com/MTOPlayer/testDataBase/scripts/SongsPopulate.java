@@ -1,4 +1,4 @@
-package testDataBase.scripts;
+package com.MTOPlayer.testDataBase.scripts;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +9,7 @@ public class SongsPopulate {
 
     public void createFileWithSongQueries(int numOfQueries){
         List<String> queries = createQueries(numOfQueries);
-        saveQueriesToFile(queries, "src/main/java/testDataBase/testData/songTableData/songFull.sql");
+        saveQueriesToFile(queries, "src/main/java/com.MTOPlayer.testDataBase/testData/songTableData/songFull.sql");
     }
 
     public void saveQueriesToFile(List<String> queries, String filePath){
@@ -33,7 +33,7 @@ public class SongsPopulate {
         ApiKeyDao apiKeyDao = new ApiKeyDao();
 
         List<String> queriesList = new LinkedList<>();
-        Map<Integer, List<Integer>> idsMap = parser.fileToMap("src/main/java/testDataBase/testData/songTableData/playlist_idAndApikey_idWithCommonLogin_id.csv");
+        Map<Integer, List<Integer>> idsMap = parser.fileToMap("src/main/java/com.MTOPlayer.testDataBase/testData/songTableData/playlist_idAndApikey_idWithCommonLogin_id.csv");
         List<Integer> playlistIds = getListOfKeysFromMap(idsMap);
 
         int numOfPlaylistIds = playlistIds.size();

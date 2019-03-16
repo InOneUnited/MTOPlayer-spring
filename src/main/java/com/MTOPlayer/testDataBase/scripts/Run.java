@@ -1,4 +1,4 @@
-package testDataBase.scripts;
+package com.MTOPlayer.testDataBase.scripts;
 
 public class Run {
     static SqlToOneFileParser parser = new SqlToOneFileParser();
@@ -9,7 +9,7 @@ public class Run {
 
 //        List<String> filesNames = new ArrayList();
 //
-//        filesNames = parser.getFilesNames("src/main/java/testDataBase/testData/passwordTableData");
+//        filesNames = parser.getFilesNames("src/main/java/com.MTOPlayer.testDataBase/testData/passwordTableData");
 //
 //        String wholeFile = "";
 //
@@ -19,7 +19,7 @@ public class Run {
 //            e.printStackTrace();
 //        }
 //
-//        parser.saveStringToFile(wholeFile, "src/main/java/testDataBase/testData/passwordTableData/passwordFull.sql");
+//        parser.saveStringToFile(wholeFile, "src/main/java/com.MTOPlayer.testDataBase/testData/passwordTableData/passwordFull.sql");
 
         //CREATE SONG TEST DATA
 //        SongsPopulate songs = new SongsPopulate();

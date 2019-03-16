@@ -1,4 +1,4 @@
-package testDataBase.scripts;
+package com.MTOPlayer.testDataBase.scripts;
 
 import java.io.*;
 import java.util.ArrayList;
