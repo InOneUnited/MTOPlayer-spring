@@ -2,7 +2,7 @@ var Dropbox = Dropbox.Dropbox;
 
 
 function initListeners() {
-    document.getElementById("submit").addEventListener("click", logWithDropBox);
+    // document.getElementById("submit").addEventListener("click", logWithDropBox);
     document.getElementById("firstPage").addEventListener("click", setFirstPage);
     document.getElementById("secondPage").addEventListener("click", setSecondPage);
     document.getElementById("thirdPage").addEventListener("click", setThirdPage);
@@ -10,39 +10,39 @@ function initListeners() {
 }
 
 
-function logWithDropBox() {
-
-    const clientId = "ca2peppfwuoyxjm";
-    const redirectURL = "https://inoneunited.github.io/KMK_Dbox_Player/"
-    window.location.href = `https://www.dropbox.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURL}&response_type=token`;
-
-}
-
-function getAccessToken() {
-    var currentLocation = window.location.href;
-    debugger;
-    if (currentLocation.indexOf("access_token") != -1) {
-
-        let accessToken = createAccessTokenFromLink(currentLocation);
-        saveDBoxObjectInLocalStorage(accessToken);
-    }
-}
-
-function createAccessTokenFromLink(link) {
-    let startPosition = link.indexOf("=") + 1;
-    let endPosition = link.indexOf("&");
-    return link.slice(startPosition, endPosition);
-}
-
-
-function saveDBoxObjectInLocalStorage(access_token) {
-    var dbox = new Dropbox({ accessToken: access_token });
-    let JsonToSave = JSON.stringify(dbox);
-
-    localStorage.removeItem("key");
-    localStorage.setItem("key", JsonToSave);
-    window.location.href = "player.html";
-}
+// function logWithDropBox() {
+//
+//     const clientId = "ca2peppfwuoyxjm";
+//     const redirectURL = "https://inoneunited.github.io/KMK_Dbox_Player/"
+//     window.location.href = `https://www.dropbox.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectURL}&response_type=token`;
+//
+// }
+//
+// function getAccessToken() {
+//     var currentLocation = window.location.href;
+//     debugger;
+//     if (currentLocation.indexOf("access_token") != -1) {
+//
+//         let accessToken = createAccessTokenFromLink(currentLocation);
+//         saveDBoxObjectInLocalStorage(accessToken);
+//     }
+// }
+//
+// function createAccessTokenFromLink(link) {
+//     let startPosition = link.indexOf("=") + 1;
+//     let endPosition = link.indexOf("&");
+//     return link.slice(startPosition, endPosition);
+// }
+//
+//
+// function saveDBoxObjectInLocalStorage(access_token) {
+//     var dbox = new Dropbox({ accessToken: access_token });
+//     let JsonToSave = JSON.stringify(dbox);
+//
+//     localStorage.removeItem("key");
+//     localStorage.setItem("key", JsonToSave);
+//     window.location.href = "player.html";
+// }
 
 
 function setFirstPage() {
@@ -75,4 +75,4 @@ function setThirdPage() {
 
 
 initListeners();
-getAccessToken();
+// getAccessToken();
