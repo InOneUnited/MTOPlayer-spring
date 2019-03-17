@@ -41,7 +41,7 @@ a {
  }
 }
 
-#login {
+#login, #register {
     background:rgba($form-bg,.9);
     padding: 40px;
     max-width:600px;
@@ -77,10 +77,10 @@ label {
 }
 }
 
-label.active {
-    transform:translateY(50px);
+label.active, #birthday {
+    transform:translateY(-20px);
     left:2px;
-    font-size:14px;
+    font-size:15px;
 .req {
     opacity:0;
 }
@@ -161,4 +161,20 @@ textarea {
 #options{
     display: flex;
     justify-content: space-between;
+}
+
+.label-unmask {
+    position: relative;
+    top: -2px;
+    font: 11px/11px Arial;
+}
+
+.checkbox-unmask {
+    height:auto;
+    width:auto;
+    display:inline-block;
+}
+
+.color-grey {
+    color:grey;
 }

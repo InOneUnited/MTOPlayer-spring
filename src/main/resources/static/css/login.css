@@ -18,7 +18,7 @@ a {
   a:hover {
     color: #179b77; }
 
-#login {
+#login, #register {
   background: rgba(19, 35, 47, 0.9);
   padding: 40px;
   max-width: 600px;
@@ -49,11 +49,11 @@ label {
     margin: 2px;
     color: #1ab188; }
 
-label.active {
-  transform: translateY(50px);
+label.active, #birthday {
+  transform: translateY(-20px);
   left: 2px;
-  font-size: 14px; }
-  label.active .req {
+  font-size: 15px; }
+  label.active .req, #birthday .req {
     opacity: 0; }
 
 label.highlight {
@@ -117,5 +117,18 @@ textarea {
 #options {
   display: flex;
   justify-content: space-between; }
+
+.label-unmask {
+  position: relative;
+  top: -2px;
+  font: 11px/11px Arial; }
+
+.checkbox-unmask {
+  height: auto;
+  width: auto;
+  display: inline-block; }
+
+.color-grey {
+  color: grey; }
 
 /*# sourceMappingURL=login.css.map */

@@ -1,6 +1,5 @@
-$('.form').find('input, textarea').on('keyup blur focus', function (e) {
-
-    var $this = $(this),
+$('#register').find('input, textarea').on('keyup blur focus', function (e) {
+    let $this = $(this),
         label = $this.prev('label');
 
     if (e.type === 'keyup') {
@@ -27,17 +26,40 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
 });
 
-$('.tab a').on('click', function (e) {
+$('#birthday-input').on('keyup blur focus', function(e){
+    if(e.type === 'keyup'){
+        if($(this).val() === ''){
+            $(this).addClass('color-grey');
+        } else {
+            $(this).removeClass('color-grey');
+        }
+    } else if (e.type === 'blur'){
+        if($(this).val() === ''){
+            $(this).removeClass('color-grey');
+        } else {
+            $(this).removeClass('color-grey');
+        }
+    } else if (e.type === 'focus'){
+        if($(this).val() === ''){
+            $(this).addClass('color-grey');
+        } else {
+            $(this).removeClass('color-grey');
+        }
+    }
+});
 
-    e.preventDefault();
+let pw   = $("#input-password"),
+    cb   = $("#checkbox-unmask"),
+    mask = true;
 
-    $(this).parent().addClass('active');
-    $(this).parent().siblings().removeClass('active');
+cb.on("click", function(){
 
-    target = $(this).attr('href');
-
-    $('.tab-content > div').not(target).hide();
-
-    $(target).fadeIn(600);
+    if(mask === true){
+        mask = false;
+        pw.attr("type", "text");
+    } else {
+        mask = true;
+        pw.attr("type", "password");
+    }
 
 });
