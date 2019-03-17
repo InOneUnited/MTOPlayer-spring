@@ -1,7 +1,7 @@
-
-
-window.onload = function() {
-	player();
-    createList()
-
-}
+//
+//
+// window.onload = function() {
+// 	player();
+//     createList()
+//
+// }

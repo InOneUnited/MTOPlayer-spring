@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dbox Player</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="views/css/main.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="views/css/player/player.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="views/css/playlist/playlist.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/player.css" th:href="@{/css/player.css}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/playlist.css" th:href="@{/css/playlist.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.12/Dropbox-sdk.js"></script>
-    <script src="script/player.js" defer></script>
-    <script src="script/playlist.js" defer></script>
+    <script src="../static/js/player.js" th:src="@{/js/player.js}" defer></script>
+    <script src="../static/js/playlist.js" th:src="@{/js/playlist.js}" defer></script>
 
 </head>
 
 <body>
     <header>
-        <img src="resources/images/logo.png" alt="logo">
+        <img src="../static/img/logo.png" th:src="@{/img/logo.png}" alt="logo">
         <button type="button" id="logout"><i class="fa fa-power-off" aria-hidden="true"></i></button>
     </header>
 
@@ -45,7 +44,7 @@
             <small style="float: right; position: relative; right: 20px;" id="end-time">00:00</small>
             <span id="buttons">
                 <button type="button" id="prev-song"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
-                <button type="button" id="play-song"><i class="fa fa-play" aria-hidden="true"></i></button>
+                <button type="button" id="play-song"><i class="fa fa-play" aria-himgidden="true"></i></button>
                 <!-- original id: play-btn -->
                 <button type="button" id="pause-song"><i class="fa fa-pause" aria-hidden="true"></i></button>
                 <button type="button" id="stop-song"><i class="fa fa-stop" aria-hidden="true"></i></button>
