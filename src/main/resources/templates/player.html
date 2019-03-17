@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dbox Player</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" media="screen" href="views/css/main.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="views/css/player/player.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/player.css" th:href="@{/css/player.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.12/Dropbox-sdk.js"></script>
-    <script src="script/initialization.js" defer></script>
-    <script src="script/functionality.js" defer></script>
+    <script src="../static/js/functionality.js" th:src="@{/js/functionality.js}" defer></script>
 </head>
 
 <body>
     <header>
-        <img src="resources/images/logo.png">
+        <img src="../static/img/logo.png" th:src="@{/img/logo.png}">
         <button type="button" id="logout"><i class="fa fa-power-off" aria-hidden="true"></i></button>
     </header>
 
@@ -52,7 +49,7 @@
             </span>
             <span id="loading">
                 <p>LOADING...</p>
-                <img src="resources/images/loading.gif" alt="">
+                <img src="../static/img/loading.gif" th:src="@{/img/loading.gif}" alt="">
             </span>
         </div>
     </footer>
