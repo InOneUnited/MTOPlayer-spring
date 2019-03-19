@@ -5,9 +5,34 @@
     <title>MTOPlayer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/footer.css" th:href="@{/css/footer.css}"/>
+    <script src="../static/js/footer.js" th:src="@{/js/footer.js}" defer></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 </head>
 <body>
-<div th:replace="fragments/header::headerfrag"></div>
+<footer id="player-bar">
+
+    <div id="project-wrapper">
+        <div id="project-container">
+            <div id="overlay"></div>
+            <div id="content">
+                <h2>Throne</h2>
+                <h3>Bring Me The Horizon</h3>
+                <input type="range" value="30" />
+                <div id="controls">
+                    <div class="column"><i class="fa fa-refresh" aria-hidden="true"></i></div>
+                    <div class="column"><i class="fa fa-step-backward" aria-hidden="true"></i></div>
+                    <div class="column"><i class="fa fa-play play-btn fa-fw" aria-hidden="true"></i></div>
+                    <div class="column"><i class="fa fa-step-forward" aria-hidden="true"></i></div>
+                    <div class="column active"><i class="fa fa-random" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 id="dailyui">009</h1>
+</footer>
 </body>
 </html>
