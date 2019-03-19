@@ -18,7 +18,7 @@
                 <img class="pure-menu-heading" id="logo" src="../../static/img/logo-name-side.png" th:src="@{/img/logo-name-side.png}">
             </div>
             <div class="pure-u-1-3" id="page-title-container">
-                <p>SUBPAGE</p>
+                <p th:text="${pageName}">SUBPAGE NAME</p>
             </div>
             <div class="pure-u-1-3">
                 <ul class="pure-menu-list">
@@ -28,17 +28,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <!--<div>-->
-        <!--<img id="logo" src="../static/img/logo.png" th:src="@{/img/logo.png}">-->
-        <!--<p id="navbar-name"></p>-->
-        <!--<div id="navbar-right">-->
-            <!--<img id="profile-pic" src="../static/img/profile_picture.jpg" th:src="@{/img/profile_picture.jpg}" >-->
-            <!--<button type="button" id="logout"><i class="fa fa-power-off" aria-hidden="true">logout</i></button>-->
-        <!--</div>-->
-    <!--</div>-->
 
 </header>
 
