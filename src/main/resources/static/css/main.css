@@ -42,9 +42,10 @@ table {
   border-spacing: 0; }
 
 body {
-  background-image: url("../img/backgrounds/vinyl.jpg");
-  background-repeat: no-repeat;
-  background-color: #cccccc;
+  background-color: #282828;
   height: 100%; }
+  body #content {
+    margin-bottom: 180px;
+    color: white; }
 
 /*# sourceMappingURL=main.css.map */
