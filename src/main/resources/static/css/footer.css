@@ -1,19 +1,19 @@
 *:focus {
   outline: none; }
 
-body {
-  min-height: 100vh;
-  font-family: "proxima-nova", "Lato", sans-serif;
-  background: #9b59b6; }
-  body #project-wrapper {
-    height: 100vh;
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+  footer #project-wrapper {
     display: flex;
     display: -webkit-flex;
     -webkit-align-items: center;
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center; }
-    body #project-wrapper #project-container {
+    footer #project-wrapper #project-container {
       background: url("../img/back.jpg");
       background-size: cover;
       background-position: top center;
@@ -29,7 +29,7 @@ body {
       -webkit-box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.5);
       -moz-box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.5);
       box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.5); }
-      body #project-wrapper #project-container #overlay {
+      footer #project-wrapper #project-container #overlay {
         position: absolute;
         height: calc(100% + 1px);
         width: calc(100% + 1px);
@@ -41,19 +41,19 @@ body {
         background: linear-gradient(135deg, #333333 0%, #222222 100%);
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         opacity: .85; }
-      body #project-wrapper #project-container #content {
+      footer #project-wrapper #project-container #player-content {
         text-align: center;
         position: relative;
         z-index: 3; }
-        body #project-wrapper #project-container #content h2 {
+        footer #project-wrapper #project-container #player-content h2 {
           font-size: 1.3em;
           margin: 35px 0 0 0;
           font-weight: 600; }
-        body #project-wrapper #project-container #content h3 {
+        footer #project-wrapper #project-container #player-content h3 {
           margin: 7px 0 15px 0;
           font-size: 0.9em;
           opacity: .4; }
-        body #project-wrapper #project-container #content input {
+        footer #project-wrapper #project-container #player-content input {
           width: 100%;
           height: 2px;
           margin: 0 0 15px 0;
@@ -66,14 +66,14 @@ body {
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none; }
-          body #project-wrapper #project-container #content input::-webkit-slider-thumb {
+          footer #project-wrapper #project-container #player-content input::-webkit-slider-thumb {
             -webkit-appearance: none;
             height: 8px;
             width: 8px;
             border-radius: 10px;
             background: #ffffff;
             cursor: pointer; }
-        body #project-wrapper #project-container #content #controls {
+        footer #project-wrapper #project-container #player-content #controls {
           height: 50px;
           display: flex;
           display: -webkit-flex;
@@ -81,20 +81,20 @@ body {
           align-items: center;
           -webkit-justify-content: center;
           justify-content: center; }
-          body #project-wrapper #project-container #content #controls .column {
+          footer #project-wrapper #project-container #player-content #controls .column {
             float: left; }
-            body #project-wrapper #project-container #content #controls .column:nth-child(even) {
+            footer #project-wrapper #project-container #player-content #controls .column:nth-child(even) {
               font-size: 1.3em; }
-            body #project-wrapper #project-container #content #controls .column:nth-child(n+2):nth-child(-n+4) {
+            footer #project-wrapper #project-container #player-content #controls .column:nth-child(n+2):nth-child(-n+4) {
               color: white !important; }
-            body #project-wrapper #project-container #content #controls .column:nth-child(3) {
+            footer #project-wrapper #project-container #player-content #controls .column:nth-child(3) {
               font-size: 2em; }
-            body #project-wrapper #project-container #content #controls .column.active {
+            footer #project-wrapper #project-container #player-content #controls .column.active {
               color: #9b59b6; }
-            body #project-wrapper #project-container #content #controls .column i {
+            footer #project-wrapper #project-container #player-content #controls .column i {
               margin: 0 15px;
               cursor: pointer; }
-  body #dailyui {
+  footer #dailyui {
     position: fixed;
     font-size: 12em;
     font-weight: 700;

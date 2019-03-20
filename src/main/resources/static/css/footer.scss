@@ -4,14 +4,13 @@ $primary: #9b59b6;
 *:focus {
   outline: none;
 }
-
-body {
-  min-height: 100vh;
-  font-family: $font;
-  background: $primary;
+footer{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
   #project-wrapper {
-    height: 100vh;
     display: flex;
     display: -webkit-flex;
     -webkit-align-items: center;
@@ -47,7 +46,7 @@ body {
         opacity: .85;
       }
 
-      #content {
+      #player-content {
         text-align: center;
         position: relative;
         z-index: 3;
