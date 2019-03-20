@@ -46,6 +46,9 @@ body {
   height: 100%; }
   body #content {
     margin-bottom: 180px;
-    color: white; }
+    color: white;
+    text-shadow: 0 0 2px #3500D3;
+    -moz-text-shadow: 0 0 2px #3500D3;
+    -webkit-text-shadow: 0 0 2px #3500D3; }
 
 /*# sourceMappingURL=main.css.map */

@@ -54,5 +54,8 @@ body{
 	#content{
 		margin-bottom:180px;
 		color:white;
+		text-shadow:0 0 2px $dark-theme-purple-bright;
+		-moz-text-shadow: 0 0 2px $dark-theme-purple-bright;
+		-webkit-text-shadow: 0 0 2px $dark-theme-purple-bright;
 	}
 }

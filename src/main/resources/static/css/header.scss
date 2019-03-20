@@ -1,5 +1,5 @@
 @import "utilities/dark_theme_colors";
-
+$bright-blue: #6FBEF3;
 .header{
   top: 0px;
   width: 100%;
@@ -83,7 +83,7 @@
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
   }
   .home-menu {
-    background: #2d3e50;
+    background: $dark-theme-purple-darkest;
   }
   .pure-menu.pure-menu-fixed {
     /* Fixed menus normally have a border at the bottom. */
@@ -115,7 +115,7 @@
   }
 
   .home-menu a {
-    color: #6FBEF3;
+    color: $bright-blue;
   }
   .home-menu li a:hover,
   .home-menu li a:focus {
@@ -284,7 +284,7 @@
       text-align:center;
     p{
       margin:0;
-      color: darkseagreen;
+      color: $bright-blue;
       padding-top: 6px;
       font-size:30px;
     }
