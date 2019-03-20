@@ -10,9 +10,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover; }
 
-div#content {
+#container {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  height: 100%; }
 
 #login-data {
   display: flex;
@@ -53,9 +54,7 @@ button {
 
 #logo-image {
   margin-top: 5%;
-  margin-left: 3%;
-  /*width: 30%;*/
-  height: 20%; }
+  margin-left: 3%; }
 
 #about-us {
   width: 100%;
@@ -63,7 +62,7 @@ button {
   margin-top: 2%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-container: space-between;
   background-color: #313131;
   opacity: 0.5;
   border-radius: 10px; }

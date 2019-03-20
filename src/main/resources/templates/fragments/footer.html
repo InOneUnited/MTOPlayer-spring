@@ -17,23 +17,29 @@
 
 <footer class="footer" th:fragment="footerfrag">
 
-    <div id="project-wrapper">
-        <div id="project-container">
-            <div id="overlay"></div>
-            <div id="player-content">
-                <h2 th:if="songName != null" th:text="${songName}">Song Name</h2>
-                <h3 th:if="playerInformation != null" th:text="${playerInformation}">Artist Name</h3>
-                <input type="range" value="30" />
-                <div id="controls">
-                    <div class="column"><i class="fa fa-refresh" aria-hidden="true"></i></div>
-                    <div class="column"><i class="fa fa-step-backward" aria-hidden="true"></i></div>
-                    <div class="column"><i class="fa fa-play play-btn fa-fw" aria-hidden="true"></i></div>
-                    <div class="column"><i class="fa fa-step-forward" aria-hidden="true"></i></div>
-                    <div class="column active"><i class="fa fa-random" aria-hidden="true"></i></div>
+    <span th:if="${songName != null}" id="player">
+        <div id="project-wrapper">
+            <div id="project-container">
+                <div id="overlay"></div>
+                <div id="player-content">
+                    <h2 th:text="${songName}">Song Name</h2>
+                    <h3 th:text="${playerInformation}">Artist Name</h3>
+                    <input type="range" value="30" />
+                    <div id="controls">
+                        <div class="column"><i class="fa fa-refresh" aria-hidden="true"></i></div>
+                        <div class="column"><i class="fa fa-step-backward" aria-hidden="true"></i></div>
+                        <div class="column"><i class="fa fa-play play-btn fa-fw" aria-hidden="true"></i></div>
+                        <div class="column"><i class="fa fa-step-forward" aria-hidden="true"></i></div>
+                        <div class="column active"><i class="fa fa-random" aria-hidden="true"></i></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </span>
+
+    <span th:unless="${songName != null}" id="info">
+
+    </span>
 </footer>
 </body>
 </html>

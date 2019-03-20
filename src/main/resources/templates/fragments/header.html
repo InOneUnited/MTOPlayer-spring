@@ -12,20 +12,26 @@
 </head>
 <body>
 <div class="header" th:fragment="headerfrag">
-    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed pure-g">
-        <div class="pure-u-1-3">
-            <img class="pure-menu-heading" id="logo" src="../../static/img/logo-name-side.png" th:src="@{/img/logo-name-side.png}">
+    <span th:if="${pageName != null}" id="logged-in-header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed pure-g">
+            <div class="pure-u-1-3">
+                <img class="pure-menu-heading" id="logo" src="../../static/img/logo-name-side.png" th:src="@{/img/logo-name-side.png}">
+            </div>
+            <div class="pure-u-1-3" id="page-title-container">
+                <p th:text="${pageName}">SUBPAGE NAME</p>
+            </div>
+            <div class="pure-u-1-3">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item" id="profile-pic"><img src="../../static/img/profile_picture.jpg" th:src="@{/img/profile_picture.jpg}" ></li>
+                    <li class="pure-menu-item" id="logout"><a href="#" class="pure-menu-link" >Logout</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="pure-u-1-3" id="page-title-container">
-            <p th:text="${pageName}">SUBPAGE NAME</p>
-        </div>
-        <div class="pure-u-1-3">
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item" id="profile-pic"><img src="../../static/img/profile_picture.jpg" th:src="@{/img/profile_picture.jpg}" ></li>
-                <li class="pure-menu-item" id="logout"><a href="#" class="pure-menu-link" >Logout</a></li>
-            </ul>
-        </div>
-    </div>
+    </span>
+
+    <span th:unless="${pageName != null}" id="not-logged-in-header">
+    </span>
+
 </div>
 
 </body>
