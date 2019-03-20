@@ -21,8 +21,8 @@
         <div id="project-container">
             <div id="overlay"></div>
             <div id="player-content">
-                <h2>Throne</h2>
-                <h3>Bring Me The Horizon</h3>
+                <h2 th:if="songName != null" th:text="${songName}">Song Name</h2>
+                <h3 th:if="playerInformation != null" th:text="${playerInformation}">Artist Name</h3>
                 <input type="range" value="30" />
                 <div id="controls">
                     <div class="column"><i class="fa fa-refresh" aria-hidden="true"></i></div>
