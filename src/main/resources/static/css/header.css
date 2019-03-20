@@ -3,10 +3,10 @@
  * Most of these are inherited from Base, but I want to change a few.
  */
 .header {
-  position: fixed;
   top: 0px;
   width: 100%;
   height: 56px;
+  margin-bottom: 20px;
   /*
    * -- LAYOUT STYLES --
    * These are some useful classes which I will need
