@@ -1,11 +1,11 @@
-var Dropbox = Dropbox.Dropbox;
+// var Dropbox = Dropbox.Dropbox;
 
 
 function initListeners() {
     // document.getElementById("submit").addEventListener("click", logWithDropBox);
-    document.getElementById("firstPage").addEventListener("click", setFirstPage);
-    document.getElementById("secondPage").addEventListener("click", setSecondPage);
-    document.getElementById("thirdPage").addEventListener("click", setThirdPage);
+    $("#firstPage").click(setFirstPage);
+    $("#secondPage").click(setSecondPage);
+    $("#thirdPage").click(setThirdPage);
 
 }
 
@@ -46,31 +46,19 @@ function initListeners() {
 
 
 function setFirstPage() {
-
-    document.getElementById("first-text").textContent = "Best music player for DropBox Users!";
-    document.getElementById("second-text").textContent = "Listen Your favorite music online!";
-    document.getElementById("first-text").style.fontSize = "30px";
-    document.getElementById("second-text").style.fontSize = "30px";
+    $("#first-text").text("Best music player for DropBox Users!");
+    $("#second-text").text("Listen Your favorite music online!");
 }
 
 function setSecondPage() {
-
-
-    document.getElementById("first-text").textContent = "Application created by:";
-    document.getElementById("second-text").textContent = "Krzysztof Jodlowski, Mateusz Mazurczak, Krzysztof Przybylowicz";
-
-    document.getElementById("first-text").style.fontSize = "30px";
-    document.getElementById("second-text").style.fontSize = "20px";
-
+    $("#first-text").text("Application created by:");
+    $("#second-text").text("Krzysztof Jodlowski, Mateusz Mazurczak, Krzysztof Przybylowicz");
 }
 
 function setThirdPage() {
+    $("#first-text").text("Contact to autors:");
+    $("#second-text").text("krzysztof1.przybylowicz@gmail.com, krzysztof.jodlowski@gmail.com, mateusz.mazurczak@gmail.com");
 
-    document.getElementById("first-text").textContent = "Contact to autors:";
-    document.getElementById("second-text").textContent = "krzysztof1.przybylowicz@gmail.com, krzysztof.jodlowski@gmail.com, mateusz.mazurczak@gmail.com";
-
-    document.getElementById("first-text").style.fontSize = "30px";
-    document.getElementById("second-text").style.fontSize = "15px";
 }
 
 
