@@ -104,4 +104,25 @@ footer {
     text-align: right;
     font-family: 'proxima-nova', 'Lato', sans-serif; }
 
+#footer-no-music {
+  background-color: #282828;
+  color: white;
+  text-shadow: 0 0 2px #3500D3;
+  -moz-text-shadow: 0 0 2px #3500D3;
+  -webkit-text-shadow: 0 0 2px #3500D3;
+  padding: 1em;
+  text-align: center; }
+  #footer-no-music .column-title {
+    padding-bottom: 1em;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase; }
+  #footer-no-music .column-item {
+    font-size: 16px;
+    font-weight: 400;
+    padding: .1875em 0;
+    margin-bottom: .75em;
+    display: inline-block;
+    text-decoration: none; }
+
 /*# sourceMappingURL=footer.css.map */

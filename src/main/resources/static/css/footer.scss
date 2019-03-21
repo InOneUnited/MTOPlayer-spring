@@ -133,3 +133,31 @@ footer{
     font-family: 'proxima-nova', 'Lato', sans-serif;
   }
 }
+
+#footer-no-music{
+  background-color: $dark-theme-black;
+  color:white;
+  text-shadow:0 0 2px $dark-theme-purple-bright;
+  -moz-text-shadow: 0 0 2px $dark-theme-purple-bright;
+  -webkit-text-shadow: 0 0 2px $dark-theme-purple-bright;
+  padding: 1em;
+  text-align: center;
+
+  .column{
+    &-title{
+    padding-bottom: 1em;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    }
+    &-item{
+      font-size: 16px;
+      font-weight: 400;
+      padding: .1875em 0;
+      margin-bottom: .75em;
+      display: inline-block;
+      text-decoration: none;
+
+    }
+  }
+}
