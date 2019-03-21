@@ -69,13 +69,6 @@ public class User {
         this.apiKeys = apiKeys;
     }
 
-    public Password getPassword() {
-        return password;
-    }
-
-    public void setPassword(Password password) {
-        this.password = password;
-    }
 
     public List<Playlist> getPlaylists() {
         return playlists;

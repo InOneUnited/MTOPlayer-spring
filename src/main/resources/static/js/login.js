@@ -1,8 +1,10 @@
-$('#register').find('input, textarea').on('keyup blur focus', function (e) {
+$("#register").find("input").on("keyup blur focus", function (e) {
+    console.log("I FOUND IT!!!");
     let $this = $(this),
         label = $this.prev('label');
-
+    console.log("this" + $this);
     if (e.type === 'keyup') {
+        console.log('keyup');
         if ($this.val() === '') {
             label.removeClass('active highlight');
         } else {
