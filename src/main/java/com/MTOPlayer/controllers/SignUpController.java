@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.SQLException;
 
 @Controller
@@ -33,14 +33,14 @@ public class SignUpController {
                 System.out.println("model added time to return");
                 return "signUp";
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+            loginService.addNewUser(user, userInfo, password.getPasswordValue());
+        } catch (IOException|SQLException e) {
             System.out.println("db error");
+            e.printStackTrace();
             model.addAttribute("error2", "true");
             return "signUp";
         }
-        System.out.println("user doesn't exist its okey");
-//        loginService.addNewUser(user, userInfo, userPassword.getPassword());
 
         return "userInfo";
     }

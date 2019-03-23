@@ -1,5 +1,10 @@
 package com.MTOPlayer.dao;
 
+import com.MTOPlayer.models.Password;
+import com.MTOPlayer.models.Salt;
+import com.MTOPlayer.models.User;
+import com.MTOPlayer.models.UserInfo;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,5 +39,48 @@ public class BasicUserDAO extends DAO implements UserDAO {
         closeStatementAndConnection(connection, statement);
 
         return false;
+    }
+
+    @Override
+    public void addNewUserToDB(User user) {
+        Connection connection = this.openDataBase();
+        String query = "INSERT INTO login VALUES(\'"+ user.getLogin() + "\',\'" + user.getEmail() +"\')";
+        editDataBase(connection, query);
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addNewPasswordToDB(Password securePassword) {
+        Connection connection = this.openDataBase();
+        String query = "INSERT INTO password VALUES(" +
+                "\'" +securePassword.getPasswordValue()+
+                "\',\'"+securePassword.getUser().getId()+"\');";
+        editDataBase(connection, query);
+    }
+
+    @Override
+    public void addNewSaltToDB(Salt salt){
+        Connection connection = this.openDataBase();
+        String query = "INSERT INTO salt VALUES(" +
+                "\'" +salt.getSalt()+
+                "\',\'"+salt.getPassword().getId()+"\');";
+        editDataBase(connection, query);
+    }
+
+    @Override
+    public void addNewUserInfoToDB(UserInfo userInfo) {
+        Connection connection = this.openDataBase();
+        String query = "INSERT INTO user_info  VALUES(" +
+                "\'" +userInfo.getFirstName()+
+                "\',\'" +userInfo.getGender()+
+                "\',\'" +userInfo.getBirthday()+
+                "\',\'" + userInfo.getLastName()+
+                "\',\'" + userInfo.getJoinDate()+
+                "\',\'"+userInfo.getUser().getId()+"\');";
+        editDataBase(connection, query);
     }
 }

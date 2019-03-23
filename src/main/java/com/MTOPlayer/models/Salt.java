@@ -12,7 +12,7 @@ public class Salt {
     private int id;
 
     @Column(name = "salt")
-    private String salt;
+    private byte[] salt;
 
     @MapsId
     @OneToOne
@@ -21,7 +21,7 @@ public class Salt {
 
     public Salt(){}
 
-    public Salt(String salt, Password password) {
+    public Salt(byte[] salt, Password password) {
         this.salt = salt;
         this.password = password;
     }
@@ -34,11 +34,11 @@ public class Salt {
         this.id = id;
     }
 
-    public String getSalt() {
+    public byte[] getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
+    public void setSalt(byte[] salt) {
         this.salt = salt;
     }
 
