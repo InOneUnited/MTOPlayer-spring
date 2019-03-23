@@ -19,7 +19,7 @@ public final class DefaultPassword implements Password {
     private static final int DEFAULT_SIZE = 64;
 
     @Override public String getStaticSalt() throws IllegalStateException, IOException {
-        List<String> inputStream = Files.readAllLines(Paths.get("../staticSalt/salt.txt"));
+        List<String> inputStream = Files.readAllLines(Paths.get("src/main/staticSalt/salt.txt"));
         String staticSalt = "";
 
         for(String word: inputStream){
@@ -55,12 +55,10 @@ public final class DefaultPassword implements Password {
     }
 
     @Override public byte[] getHashedPassword(String password, byte[] salt) throws IllegalStateException, IOException {
-
         Validate.notNull(password, "Password must not be null");
         Validate.notNull(salt, "Salt must not be null");
 
         byte[] hashedPassword = createHashedPassword(password, salt);
-
         return hashedPassword;
 
     }
@@ -82,6 +80,7 @@ public final class DefaultPassword implements Password {
     //IOException with reading lines from static file
     private final byte[] createHashedPassword(final String password, final byte[] salt) throws IllegalStateException, IOException {
         String staticSalt = getStaticSalt();
+
         String passwordWithStaticSalt = password + staticSalt;
         final byte[] passwordBytes = passwordWithStaticSalt.getBytes("UTF-8");
         final byte[] all = ArrayUtils.addAll(passwordBytes, salt);

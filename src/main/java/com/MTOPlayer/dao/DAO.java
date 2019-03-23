@@ -65,16 +65,6 @@ public abstract class DAO {
         return result;
     }
 
-    protected void editDataBase(Connection connection, String query) {
-        try{
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.executeUpdate();
-            closeStatementAndConnection(connection, statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Data base error - check Your internet connection or try later!");
-        }
-    }
 
     protected void executeQuery(String query){
         Connection connection = openDataBase();
@@ -85,6 +75,7 @@ public abstract class DAO {
             closeStatementAndConnection(connection, statement);
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Data base error - check Your internet connection or try later!");
         }
     }
 }

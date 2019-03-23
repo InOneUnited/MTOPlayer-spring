@@ -1,6 +1,6 @@
 package com.MTOPlayer.controllers;
 
-import com.MTOPlayer.models.Password;
+import com.MTOPlayer.models.TemporaryPassword;
 import com.MTOPlayer.models.User;
 import com.MTOPlayer.models.UserInfo;
 import com.MTOPlayer.service.BasicLoginService;
@@ -18,12 +18,12 @@ public class SignUpController {
     public String showSignUp(Model userModel, Model infoModel, Model passwordModel){
         userModel.addAttribute("user", new User());
         infoModel.addAttribute("userInfo", new UserInfo());
-        passwordModel.addAttribute("password", new Password());
+        passwordModel.addAttribute("temporaryPassword", new TemporaryPassword());
         return "signUp";
     }
 
     @PostMapping("/signUp")
-    public String processNewUser(Model model, @ModelAttribute User user, @ModelAttribute UserInfo userInfo, @ModelAttribute Password password){
+    public String processNewUser(Model model, @ModelAttribute User user, @ModelAttribute UserInfo userInfo, @ModelAttribute TemporaryPassword password){
         LoginService loginService = new BasicLoginService();
         try {
             if(!loginService.isUserNew(user))
@@ -34,7 +34,7 @@ public class SignUpController {
                 return "signUp";
             }
 
-            loginService.addNewUser(user, userInfo, password.getPasswordValue());
+            loginService.addNewUser(user, userInfo, password.getPassword());
         } catch (IOException|SQLException e) {
             System.out.println("db error");
             e.printStackTrace();

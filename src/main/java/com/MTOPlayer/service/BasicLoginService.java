@@ -9,7 +9,9 @@ import com.MTOPlayer.models.UserInfo;
 import com.MTOPlayer.security.DefaultPassword;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.Base64;
 
 public class BasicLoginService implements LoginService {
     private UserDAO userDao = new BasicUserDAO();
@@ -40,16 +42,17 @@ public class BasicLoginService implements LoginService {
 
     private Password createSecurePassword(String password, byte[] salt) throws IOException {
         com.MTOPlayer.security.Password securePasswordMaker = new DefaultPassword();
-        String passwordValue;
+        byte[] passwordValue;
 
         try {
-            passwordValue = new String(securePasswordMaker.getHashedPassword(password, salt),"UTF-8");
+            passwordValue = securePasswordMaker.getHashedPassword(password, salt);
         } catch (IOException e) {
             throw new IOException("creating password gone wrong");
         }
-
+        String passwordString = new String(passwordValue, StandardCharsets.UTF_8);
+        System.out.println("STRING FROM BYTE[] " + passwordString);
         Password securePassword = new Password();
-        securePassword.setPasswordValue(passwordValue);
+        securePassword.setPasswordValue(passwordString);
 
         return securePassword;
     }

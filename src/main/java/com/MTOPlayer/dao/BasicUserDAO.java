@@ -43,44 +43,37 @@ public class BasicUserDAO extends DAO implements UserDAO {
 
     @Override
     public void addNewUserToDB(User user) {
-        Connection connection = this.openDataBase();
-        String query = "INSERT INTO login VALUES(\'"+ user.getLogin() + "\',\'" + user.getEmail() +"\')";
-        editDataBase(connection, query);
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String query = "INSERT INTO login (login, email) VALUES(\'"+ user.getLogin() + "\',\'" + user.getEmail() +"\');";
+        System.out.println(query);
+        executeQuery(query);
     }
 
     @Override
     public void addNewPasswordToDB(Password securePassword) {
-        Connection connection = this.openDataBase();
-        String query = "INSERT INTO password VALUES(" +
+        String query = "INSERT INTO password(password, login_id) VALUES(" +
                 "\'" +securePassword.getPasswordValue()+
                 "\',\'"+securePassword.getUser().getId()+"\');";
-        editDataBase(connection, query);
+        System.out.println(query);
+        executeQuery(query);
     }
 
     @Override
     public void addNewSaltToDB(Salt salt){
-        Connection connection = this.openDataBase();
-        String query = "INSERT INTO salt VALUES(" +
+        String query = "INSERT INTO salt(salt, password_id) VALUES(" +
                 "\'" +salt.getSalt()+
                 "\',\'"+salt.getPassword().getId()+"\');";
-        editDataBase(connection, query);
+        executeQuery(query);
     }
 
     @Override
     public void addNewUserInfoToDB(UserInfo userInfo) {
-        Connection connection = this.openDataBase();
-        String query = "INSERT INTO user_info  VALUES(" +
+        String query = "INSERT INTO user_info(first_name, gender, birthday, last_name, join_date, login_id)  VALUES(" +
                 "\'" +userInfo.getFirstName()+
                 "\',\'" +userInfo.getGender()+
                 "\',\'" +userInfo.getBirthday()+
                 "\',\'" + userInfo.getLastName()+
                 "\',\'" + userInfo.getJoinDate()+
                 "\',\'"+userInfo.getUser().getId()+"\');";
-        editDataBase(connection, query);
+        executeQuery(query);
     }
 }
