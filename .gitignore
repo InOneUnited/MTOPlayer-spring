@@ -123,7 +123,9 @@ top secret
 .idea/workspace.xml
 target/
 src/main/resources/META-INF/persistence.properties
-src/main/java/com/MTOPlayer/staticSalt/
+src/main/staticSalt/
+src/main/dataBasePassword/
+
 allPlayer.iml
 .iws
 tasks.xml
