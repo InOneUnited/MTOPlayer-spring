@@ -11,7 +11,7 @@ public class Password {
     private int id;
 
     @Column(name="password")
-    private String password;
+    private String passwordValue;
 
     @MapsId
     @OneToOne
@@ -23,8 +23,8 @@ public class Password {
 
     public Password() { }
 
-    public Password(String password, User user, Salt salt) {
-        this.password = password;
+    public Password(String passwordValue, User user, Salt salt) {
+        this.passwordValue = passwordValue;
         this.user = user;
         this.salt = salt;
     }
@@ -37,12 +37,12 @@ public class Password {
         this.id = id;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordValue() {
+        return passwordValue;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordValue(String passwordValue) {
+        this.passwordValue = passwordValue;
     }
 
     public User getUser() {

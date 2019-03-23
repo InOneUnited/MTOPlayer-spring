@@ -13,7 +13,7 @@ public class User {
     private int id;
 
     @Column(name="login")
-    private String userLogin;
+    private String login;
 
     @Column(name="email")
     private String email;
@@ -35,8 +35,8 @@ public class User {
 
     public User() {}
 
-    public User(String userLogin, String email, List<APIKey> apiKeys, Password password, Salt salt, List<Session> sessions, List<Playlist> playlists, UserInfo userInfo) {
-        this.userLogin = userLogin;
+    public User(String login, String email, List<APIKey> apiKeys, Password password, Salt salt, List<Session> sessions, List<Playlist> playlists, UserInfo userInfo) {
+        this.login = login;
         this.email = email;
         this.apiKeys = apiKeys;
         this.password = password;
@@ -53,12 +53,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserLogin() {
-        return userLogin;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUserLogin(String userLogin) {
-        this.userLogin = userLogin;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public List<APIKey> getApiKeys() {

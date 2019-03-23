@@ -22,14 +22,14 @@
                 <label>
                     Username<span class="req">*</span>
                 </label>
-                <input type="text" th:field="${user.userLogin}" required/>
+                <input type="text" th:field="*{user.login}" required/>
             </div>
 
             <div class="field-wrap">
                 <label>
                     Email Address<span class="req">*</span>
                 </label>
-                <input type="email" th:field="${user.email}" required/>
+                <input type="email" th:field="*{user.email}" required/>
             </div>
 
             <div class="field-wrap">
@@ -64,14 +64,21 @@
                 <label>
                     Password<span class="req">*</span>
                 </label>
-                <input id="input-password" th:field="*{userPassword.password}" type="password"  required />
+                <input id="input-password" th:field="*{password.passwordValue}"  type="password"  required />
             </div>
             <div id="toggle-password">
                 <input id="checkbox-unmask" class="checkbox-unmask" type="checkbox" />
                 <label for="checkbox-unmask" class="label-unmask">Show my password</label>
             </div>
 
-
+            <div th:if="${error != null}" class="isa_error">
+                <i class="fa fa-times-circle"></i>
+                Username or email is already in the database.
+            </div>
+            <div th:if="${error2 != null}" class="isa_error">
+                <i class="fa fa-times-circle"></i>
+                Something went wrong, please try again later or contact us with this problem.
+            </div>
             <button class="button button-block" th:type="submit" type="submit"/>Sign Up</button>
             <div id="options">
                 <p id="signIn"><a href="#">Already a user?</a></p>

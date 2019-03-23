@@ -16,27 +16,31 @@ import java.sql.SQLException;
 public class SignUpController {
     @GetMapping("/signUp")
     public String showSignUp(Model userModel, Model infoModel, Model passwordModel){
-        System.out.println("HELLOGETTER");
         userModel.addAttribute("user", new User());
         infoModel.addAttribute("userInfo", new UserInfo());
-        passwordModel.addAttribute("userPassword", new Password());
+        passwordModel.addAttribute("password", new Password());
         return "signUp";
     }
 
     @PostMapping("/signUp")
-    public String processNewUser(@ModelAttribute User user, @ModelAttribute UserInfo userInfo, @ModelAttribute Password userPassword, Model model){
+    public String processNewUser(Model model, @ModelAttribute User user, @ModelAttribute UserInfo userInfo, @ModelAttribute Password password){
         LoginService loginService = new BasicLoginService();
-
         try {
-            if(!loginService.isUserNew(user)) {
+            if(!loginService.isUserNew(user))
+            {
+                System.out.println("user exists");
+                model.addAttribute("error", "true");
+                System.out.println("model added time to return");
                 return "signUp";
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("db error");
+            model.addAttribute("error2", "true");
             return "signUp";
         }
-
-        loginService.addNewUser(user, userInfo, userPassword.getPassword());
+        System.out.println("user doesn't exist its okey");
+//        loginService.addNewUser(user, userInfo, userPassword.getPassword());
 
         return "userInfo";
     }

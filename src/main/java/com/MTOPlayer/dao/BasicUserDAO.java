@@ -11,8 +11,8 @@ public class BasicUserDAO extends DAO implements UserDAO {
         Connection connection = this.openDataBase();
         PreparedStatement statement = null;
         ResultSet result = null;
-        String query = "SELECT * FROM login WHERE login=" + login +" OR email="+ email +";";
-
+        String query = "SELECT * FROM login WHERE  login=\'" + login +"\' OR email=\'"+ email +"\';";
+        System.out.println(query);
         try{
             statement = connection.prepareStatement(query);
             result = askDataBaseForData(query, statement);

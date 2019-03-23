@@ -12,7 +12,7 @@ public abstract class DAO {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines( Paths.get("src/main/dataBasePassword/password.txt"), StandardCharsets.UTF_8))
         {
-            stream.forEach(s -> contentBuilder.append(s).append("\n"));
+            stream.forEach(s -> contentBuilder.append(s));
         }
         catch (IOException e)
         {
@@ -25,6 +25,7 @@ public abstract class DAO {
     protected Connection openDataBase() {
         Connection c = null;
         String password = getPassword();
+        System.out.println("XXX" + password + "XXX");
         try{
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MTOplayer","player",password);
         } catch (SQLException e) {

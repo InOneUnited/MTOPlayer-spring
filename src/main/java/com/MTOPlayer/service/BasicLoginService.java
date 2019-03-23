@@ -12,7 +12,7 @@ public class BasicLoginService implements LoginService {
     public boolean isUserNew(User user) throws SQLException {
         UserDAO userDao = new BasicUserDAO();
 
-        if(userDao.isNewUserInDB(user.getUserLogin(), user.getEmail())){
+        if(userDao.isNewUserInDB(user.getLogin(), user.getEmail())){
             return false;
         }
         return true;
