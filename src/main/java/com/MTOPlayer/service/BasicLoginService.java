@@ -77,7 +77,7 @@ public class BasicLoginService implements LoginService {
     }
 
     @Override
-    public boolean isEmailInDB(String email) {
+    public boolean isEmailInDB(String email) throws IOException, SQLException {
         return userDao.isEmailInDB(email);
     }
 

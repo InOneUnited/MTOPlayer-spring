@@ -14,17 +14,7 @@ public class BasicUserDAO extends DAO implements UserDAO {
     public boolean isNewUserInDB(String login, String email) throws SQLException, IOException {
         String query = "SELECT * FROM login WHERE  login=\'" + login +"\' OR email=\'"+ email +"\';";
 
-        ResultSet result = fillResult(query);
-
-        try{
-            while(result.next()){
-                return true;
-            }
-        } catch (SQLException e) {
-            throw new SQLException("something went wrong with getting results");
-        }
-
-        return false;
+        return isResultInDB(query);
     }
 
     @Override
@@ -88,9 +78,9 @@ public class BasicUserDAO extends DAO implements UserDAO {
     }
 
     @Override
-    public int getUserId(String login) throws SQLException, IOException {
+    public int getUserId(String email) throws SQLException, IOException {
         int userId = 0;
-        String query = "SELECT id FROM login WHERE login=\'" +login+"\';";
+        String query = "SELECT id FROM login WHERE email=\'" +email+"\';";
 
         ResultSet result = fillResult(query);
 
@@ -99,5 +89,26 @@ public class BasicUserDAO extends DAO implements UserDAO {
             userId = result.getInt(1);
         }
         return userId;
+    }
+
+    @Override
+    public boolean isEmailInDB(String email) throws IOException, SQLException {
+        String query = "SELECT * FROM login WHERE  email=\'" + email +"\';";
+
+        return isResultInDB(query);
+    }
+
+    private boolean isResultInDB(String query) throws IOException, SQLException {
+        ResultSet result = fillResult(query);
+
+        try{
+            while(result.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new SQLException("something went wrong with getting results");
+        }
+
+        return false;
     }
 }

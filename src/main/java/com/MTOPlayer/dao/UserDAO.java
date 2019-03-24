@@ -14,5 +14,6 @@ public interface UserDAO {
     void addNewPasswordToDB(Password securePassword) throws IOException, SQLException;
     void addNewSaltToDB(Salt salt) throws IOException, SQLException;
     void addNewUserInfoToDB(UserInfo userInfo) throws IOException, SQLException;
-    int getUserId(String login) throws SQLException, IOException;
+    int getUserId(String email) throws SQLException, IOException;
+    boolean isEmailInDB(String email) throws IOException, SQLException;
 }
