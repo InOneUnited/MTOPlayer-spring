@@ -3,7 +3,7 @@ package com.MTOPlayer.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="user_info")
@@ -25,11 +25,11 @@ public class UserInfo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @Column(name="birthday")
-    private Date birthday;
+    private LocalDate birthday;
 
     @Temporal(TemporalType.DATE)
     @Column(name="join_date")
-    private Date joinDate;
+    private LocalDate joinDate;
 
     @MapsId
     @OneToOne
@@ -38,7 +38,7 @@ public class UserInfo {
 
     public UserInfo() {}
 
-    public UserInfo(String firstName, String lastName, String gender, Date birthday, Date joinDate, User user) {
+    public UserInfo(String firstName, String lastName, String gender, LocalDate birthday, LocalDate joinDate, User user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -79,19 +79,19 @@ public class UserInfo {
         this.gender = gender;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
-    public Date getJoinDate() {
+    public LocalDate getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(Date joinDate) {
+    public void setJoinDate(LocalDate joinDate) {
         this.joinDate = joinDate;
     }
 

@@ -9,7 +9,9 @@ import com.MTOPlayer.security.DefaultPassword;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 public class BasicLoginService implements LoginService {
     private UserDAO userDao = new BasicUserDAO();
@@ -45,7 +47,7 @@ public class BasicLoginService implements LoginService {
 
         userDao.addNewSaltToDB(salt);
 
-        Date joinDate = new Date();
+        LocalDate joinDate = LocalDate.now();
         userInfo.setJoinDate(joinDate);
         userDao.addNewUserInfoToDB(userInfo);
 
