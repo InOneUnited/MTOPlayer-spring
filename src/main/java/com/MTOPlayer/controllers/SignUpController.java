@@ -28,9 +28,7 @@ public class SignUpController {
         try {
             if(!loginService.isUserNew(user))
             {
-                System.out.println("user exists");
                 model.addAttribute("error", "true");
-                System.out.println("model added time to return");
                 return "signUp";
             }
 
