@@ -78,20 +78,4 @@ public class BasicUserDAO extends DAO implements UserDAO {
         }
         return userId;
     }
-
-    private ResultSet fillResult(String query) throws SQLException {
-        Connection connection = this.openDataBase();
-        PreparedStatement statement = null;
-        ResultSet result;
-
-        try{
-            statement = connection.prepareStatement(query);
-            result = askDataBaseForData(query, statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            closeStatementAndConnection(connection, statement);
-            throw new SQLException("something went wrong with connecting");
-        }
-        return result;
-    }
 }

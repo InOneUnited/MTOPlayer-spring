@@ -1,6 +1,8 @@
 package com.MTOPlayer.service;
 
+import com.MTOPlayer.dao.BasicPasswordDAO;
 import com.MTOPlayer.dao.BasicUserDAO;
+import com.MTOPlayer.dao.PasswordDAO;
 import com.MTOPlayer.dao.UserDAO;
 import com.MTOPlayer.models.Password;
 import com.MTOPlayer.models.Salt;
@@ -27,19 +29,23 @@ public class BasicLoginService implements LoginService {
     @Override
     public void addNewUser(User user, UserInfo userInfo, String password) throws IOException, SQLException {
         userDao.addNewUserToDB(user);
+        PasswordDAO passwordDAO = new BasicPasswordDAO();
+
         int userId = userDao.getUserId(user.getLogin());
-        System.out.println("userId: " + userId);
         user.setId(userId);
 
         Salt salt = createSalt();
         Password securePassword = createSecurePassword(password, salt.getSalt());
-        salt.setPassword(securePassword);
 
         securePassword.setUser(user);
         userInfo.setUser(user);
 
-
         userDao.addNewPasswordToDB(securePassword);
+        int passwordId = passwordDAO.getPasswordIdBasedOnUser(userId);
+        securePassword.setId(passwordId);
+
+        salt.setPassword(securePassword);
+
         userDao.addNewSaltToDB(salt);
         userDao.addNewUserInfoToDB(userInfo);
 
