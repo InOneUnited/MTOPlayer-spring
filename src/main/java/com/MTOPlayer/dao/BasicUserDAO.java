@@ -6,6 +6,8 @@ import com.MTOPlayer.models.User;
 import com.MTOPlayer.models.UserInfo;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -26,27 +28,29 @@ public class BasicUserDAO extends DAO implements UserDAO {
 
     @Override
     public void addNewPasswordToDB(Password securePassword) throws IOException, SQLException {
-        String query = "INSERT INTO password(password, login_id) VALUES(" +
-                "\'" +securePassword.getPasswordValue()+
-                "\',\'"+securePassword.getUser().getId()+"\');";
-        System.out.println(query);
-        executeQuery(query);
-    }
+        String query = "INSERT INTO password(password, login_id) VALUES(?,?)";
+
+        Connection connection = openDataBase();
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setBytes(1, securePassword.getPasswordValue());
+        pst.setInt(2, securePassword.getUser().getId());
+        pst.executeUpdate();
+        closeStatementAndConnection(connection, pst);
+}
 
     @Override
     public void addNewSaltToDB(Salt salt) throws IOException, SQLException {
-        String query = "INSERT INTO salt(salt, password_id) VALUES(" +
-                "\'" +salt.getSalt()+
-                "\',\'"+salt.getPassword().getId()+"\');";
-        executeQuery(query);
-
+        String query = "INSERT INTO salt(salt, password_id) VALUES(?,?)";
+        Connection connection = openDataBase();
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setBytes(1, salt.getSalt() );
+        pst.setInt(2, salt.getPassword().getId());
+        pst.executeUpdate();
+        closeStatementAndConnection(connection, pst);
     }
 
     @Override
     public void addNewUserInfoToDB(UserInfo userInfo) throws IOException, SQLException {
-        if(userInfo.getBirthday() == null){
-            System.out.println("NULLNULLNULL!!!");
-        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("INSERT INTO user_info(first_name, gender, birthday, last_name, join_date, login_id) VALUES(");
 

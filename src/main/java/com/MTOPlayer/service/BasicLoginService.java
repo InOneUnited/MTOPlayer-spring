@@ -8,9 +8,7 @@ import com.MTOPlayer.models.UserInfo;
 import com.MTOPlayer.security.DefaultPassword;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import java.util.Base64;
 import java.util.Date;
 
 public class BasicLoginService implements LoginService {
@@ -33,6 +31,7 @@ public class BasicLoginService implements LoginService {
         user.setId(userId);
 
         Salt salt = createSalt();
+
         Password securePassword = createSecurePassword(password, salt.getSalt());
 
         securePassword.setUser(user);
@@ -61,6 +60,7 @@ public class BasicLoginService implements LoginService {
         } catch (IOException e) {
             throw new IOException("creating password gone wrong");
         }
+
         Password securePassword = new Password();
         securePassword.setPasswordValue(passwordValue);
 
@@ -90,6 +90,7 @@ public class BasicLoginService implements LoginService {
         int userId = userDao.getUserId(email);
         int passwordId = passwordDAO.getPasswordIdBasedOnUser(userId);
         byte[] hashedPassword = passwordDAO.getHashedPassword(passwordId);
+
         byte[] salt = saltDAO.getSalt(passwordId);
 
         return securePasswordChecker.isPasswordCorrect(password,salt, hashedPassword);
