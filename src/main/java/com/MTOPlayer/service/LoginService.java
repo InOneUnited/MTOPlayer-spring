@@ -9,4 +9,6 @@ import java.sql.SQLException;
 public interface LoginService {
     boolean isUserNew(User user) throws SQLException, IOException;
     void addNewUser(User user, UserInfo userInfo, String password) throws IOException, SQLException;
+    boolean isEmailInDB(String email);
+    boolean isPasswordCorrect(String email, String password);
 }
