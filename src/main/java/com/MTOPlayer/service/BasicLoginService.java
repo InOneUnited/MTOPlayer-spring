@@ -25,15 +25,20 @@ public class BasicLoginService implements LoginService {
     }
 
     @Override
-    public void addNewUser(User user, UserInfo userInfo, String password) throws IOException {
+    public void addNewUser(User user, UserInfo userInfo, String password) throws IOException, SQLException {
+        userDao.addNewUserToDB(user);
+        int userId = userDao.getUserId(user.getLogin());
+        System.out.println("userId: " + userId);
+        user.setId(userId);
+
         Salt salt = createSalt();
         Password securePassword = createSecurePassword(password, salt.getSalt());
-
         salt.setPassword(securePassword);
+
         securePassword.setUser(user);
         userInfo.setUser(user);
 
-        userDao.addNewUserToDB(user);
+
         userDao.addNewPasswordToDB(securePassword);
         userDao.addNewSaltToDB(salt);
         userDao.addNewUserInfoToDB(userInfo);
@@ -49,10 +54,8 @@ public class BasicLoginService implements LoginService {
         } catch (IOException e) {
             throw new IOException("creating password gone wrong");
         }
-        String passwordString = new String(passwordValue, StandardCharsets.UTF_8);
-        System.out.println("STRING FROM BYTE[] " + passwordString);
         Password securePassword = new Password();
-        securePassword.setPasswordValue(passwordString);
+        securePassword.setPasswordValue(passwordValue);
 
         return securePassword;
     }

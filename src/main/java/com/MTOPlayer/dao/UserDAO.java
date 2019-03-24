@@ -13,4 +13,5 @@ public interface UserDAO {
     void addNewPasswordToDB(Password securePassword);
     void addNewSaltToDB(Salt salt);
     void addNewUserInfoToDB(UserInfo userInfo);
+    int getUserId(String login) throws SQLException;
 }

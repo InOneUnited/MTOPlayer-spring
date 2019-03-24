@@ -8,7 +8,7 @@ import java.util.List;
 @NamedQuery(name="allUsersQuery", query="select t from User t")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
