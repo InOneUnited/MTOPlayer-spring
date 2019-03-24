@@ -18,4 +18,19 @@ public class BasicPasswordDAO extends DAO implements PasswordDAO {
         }
         return passwordId;
     }
+
+    @Override
+    public byte[] getHashedPassword(int passwordId) throws IOException, SQLException {
+        byte[] hashedPassword = new byte[0];
+
+        String query = "SELECT password FROM password WHERE id=\'" +passwordId+"\';";
+
+        ResultSet result = fillResult(query);
+
+
+        while(result.next()){
+            hashedPassword = result.getBytes(1);
+        }
+        return hashedPassword;
+    }
 }
