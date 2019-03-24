@@ -1,9 +1,6 @@
 package com.MTOPlayer.service;
 
-import com.MTOPlayer.dao.BasicPasswordDAO;
-import com.MTOPlayer.dao.BasicUserDAO;
-import com.MTOPlayer.dao.PasswordDAO;
-import com.MTOPlayer.dao.UserDAO;
+import com.MTOPlayer.dao.*;
 import com.MTOPlayer.models.Password;
 import com.MTOPlayer.models.Salt;
 import com.MTOPlayer.models.User;
@@ -32,7 +29,7 @@ public class BasicLoginService implements LoginService {
         userDao.addNewUserToDB(user);
         PasswordDAO passwordDAO = new BasicPasswordDAO();
 
-        int userId = userDao.getUserId(user.getLogin());
+        int userId = userDao.getUserId(user.getEmail());
         user.setId(userId);
 
         Salt salt = createSalt();
@@ -77,6 +74,25 @@ public class BasicLoginService implements LoginService {
         salt.setSalt(saltValue);
 
         return salt;
+    }
+
+    @Override
+    public boolean isEmailInDB(String email) {
+        return userDao.isEmailInDB(email);
+    }
+
+    @Override
+    public boolean isPasswordCorrect(String email, String password) throws IOException, SQLException {
+        PasswordDAO passwordDAO = new BasicPasswordDAO();
+        SaltDAO saltDAO = new BasicSaltDAO();
+        com.MTOPlayer.security.Password securePasswordChecker = new DefaultPassword();
+
+        int userId = userDao.getUserId(email);
+        int passwordId = passwordDAO.getPasswordIdBasedOnUser(userId);
+        byte[] hashedPassword = passwordDAO.getHashedPassword(passwordId);
+        byte[] salt = saltDAO.getSalt(passwordId);
+
+        return securePasswordChecker.isPasswordCorrect(password,salt, hashedPassword);
     }
 
 }
