@@ -7,6 +7,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public interface LoginService {
-    boolean isUserNew(User user) throws SQLException;
+    boolean isUserNew(User user) throws SQLException, IOException;
     void addNewUser(User user, UserInfo userInfo, String password) throws IOException, SQLException;
 }

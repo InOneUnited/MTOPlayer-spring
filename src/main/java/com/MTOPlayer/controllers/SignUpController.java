@@ -42,6 +42,6 @@ public class SignUpController {
             return "signUp";
         }
 
-        return "userInfo";
+        return "redirect:/userInfo";
     }
 }

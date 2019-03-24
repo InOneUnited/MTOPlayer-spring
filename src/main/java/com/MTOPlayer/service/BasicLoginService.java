@@ -14,12 +14,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.util.Date;
 
 public class BasicLoginService implements LoginService {
     private UserDAO userDao = new BasicUserDAO();
 
     @Override
-    public boolean isUserNew(User user) throws SQLException {
+    public boolean isUserNew(User user) throws SQLException, IOException {
         if(userDao.isNewUserInDB(user.getLogin(), user.getEmail())){
             return false;
         }
@@ -47,6 +48,9 @@ public class BasicLoginService implements LoginService {
         salt.setPassword(securePassword);
 
         userDao.addNewSaltToDB(salt);
+
+        Date joinDate = new Date();
+        userInfo.setJoinDate(joinDate);
         userDao.addNewUserInfoToDB(userInfo);
 
     }
