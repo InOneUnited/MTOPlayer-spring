@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 @Controller
 public class SignInController {
     @GetMapping("/login")
@@ -18,7 +21,7 @@ public class SignInController {
     }
 
     @PostMapping("/login")
-    public String processLogin(Model model, @ModelAttribute User user, @ModelAttribute TemporaryPassword password){
+    public String processLogin(Model model, @ModelAttribute User user, @ModelAttribute TemporaryPassword password) throws IOException, SQLException {
         LoginService loginService = new BasicLoginService();
         if(loginService.isEmailInDB(user.getEmail())){
             if(loginService.isPasswordCorrect(user.getEmail(), password.getPassword())){
