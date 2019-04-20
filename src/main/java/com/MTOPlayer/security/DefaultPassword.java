@@ -60,7 +60,7 @@ public final class DefaultPassword implements Password {
 
     @Override
     public byte[] getHashedPassword(String password, byte[] salt) throws IllegalStateException, IOException {
-        Validate.notNull(password, "Password must not be null");
+        Validate.notNull(password, "PasswordRepository must not be null");
         Validate.notNull(salt, "Salt must not be null");
 
         byte[] hashedPassword = createHashedPassword(password, salt);
@@ -71,7 +71,7 @@ public final class DefaultPassword implements Password {
     @Override
     public boolean isPasswordCorrect(final String password, final byte[] salt, final byte[] hash) throws NullPointerException, IllegalStateException, IOException {
 
-        Validate.notNull(password, "Password must not be null");
+        Validate.notNull(password, "PasswordRepository must not be null");
         Validate.notNull(salt, "Salt must not be null");
         Validate.notNull(hash, "Hash must not be null");
 

@@ -19,7 +19,7 @@ public class testDB {
 //        salt.setSalt("askdoapsdkop");
 //        salt.setUser(user);
 //
-//        Password password = new Password();
+//        PasswordRepository password = new PasswordRepository();
 //        password.setPassword("haslo");
 //        password.setUser(user);
 //
