@@ -15,6 +15,8 @@ public class SongController {
     public String showSong(@PathVariable int songId, Model model){
         pageName = "Song";
         model.addAttribute("pageName", pageName);
+        model.addAttribute("songName", "Nothing else materace");
+        model.addAttribute("playerInformation", "Złomotica");
         return "player";
     }
 }
