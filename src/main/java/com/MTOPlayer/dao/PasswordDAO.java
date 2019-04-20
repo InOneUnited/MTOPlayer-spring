@@ -1,10 +1,19 @@
 package com.MTOPlayer.dao;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import com.MTOPlayer.repository.PasswordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface PasswordDAO {
-    int getPasswordIdBasedOnUser(int userId) throws SQLException, IOException;
+@Service
+public class PasswordDAO {
+    @Autowired
+    private PasswordRepository passwordRepository;
 
-    byte[] getHashedPassword(int passwordId) throws IOException, SQLException;
+    public int getPasswordIdBasedOnUser(int userId) {
+        return this.passwordRepository.findPasswordByUserId(userId).getId();
+    }
+
+    public byte[] getHashedPassword(int passwordId) {
+        return this.passwordRepository.findPasswordById(passwordId).getPasswordValue();
+    }
 }

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class BasicLoginService implements LoginService {
-    private UserDAO userDao = new BasicUserDAO();
+    private UserDAO userDao = new UserDAO();
 
     @Override
     public boolean isUserNew(User user) throws SQLException, IOException {
@@ -25,7 +25,7 @@ public class BasicLoginService implements LoginService {
     @Override
     public void addNewUser(User user, UserInfo userInfo, String password) throws IOException, SQLException {
         userDao.addNewUserToDB(user);
-        PasswordDAO passwordDAO = new BasicPasswordDAO();
+        PasswordDAO passwordDAO = new PasswordDAO();
 
         int userId = userDao.getUserId(user.getEmail());
         user.setId(userId);
@@ -83,7 +83,7 @@ public class BasicLoginService implements LoginService {
 
     @Override
     public boolean isPasswordCorrect(String email, String password) throws IOException, SQLException {
-        PasswordDAO passwordDAO = new BasicPasswordDAO();
+        PasswordDAO passwordDAO = new PasswordDAO();
         SaltDAO saltDAO = new BasicSaltDAO();
         com.MTOPlayer.security.Password securePasswordChecker = new DefaultPassword();
 
