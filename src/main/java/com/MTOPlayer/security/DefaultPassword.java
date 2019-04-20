@@ -4,7 +4,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.Validate;
 import org.bouncycastle.jcajce.provider.digest.SHA3;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.SecureRandom;
@@ -18,30 +18,34 @@ public final class DefaultPassword implements Password {
     private static final Random RANDOM = new SecureRandom();
     private static final int DEFAULT_SIZE = 64;
 
-    @Override public String getStaticSalt() throws IllegalStateException, IOException {
+    @Override
+    public String getStaticSalt() throws IllegalStateException, IOException {
         List<String> inputStream = Files.readAllLines(Paths.get("src/main/staticSalt/salt.txt"));
         String staticSalt = "";
 
-        for(String word: inputStream){
-            staticSalt = new StringBuilder().append(staticSalt).append(word).toString() ;
+        for (String word : inputStream) {
+            staticSalt = new StringBuilder().append(staticSalt).append(word).toString();
         }
 
-        if(staticSalt.isEmpty()){
+        if (staticSalt.isEmpty()) {
             throw new IllegalStateException("salt can not be null");
         }
 
         return staticSalt;
     }
 
-    @Override public byte[] getDynamicSalt64() {
+    @Override
+    public byte[] getDynamicSalt64() {
         return getDynamicSalt(DEFAULT_SIZE);
     }
 
-    @Override public byte[] getDynamicSalt32() {
+    @Override
+    public byte[] getDynamicSalt32() {
         return getDynamicSalt(32);
     }
 
-    @Override public byte[] getDynamicSalt(int size) {
+    @Override
+    public byte[] getDynamicSalt(int size) {
         final byte[] salt;
 
         if (size < 32) {
@@ -54,7 +58,8 @@ public final class DefaultPassword implements Password {
         return salt;
     }
 
-    @Override public byte[] getHashedPassword(String password, byte[] salt) throws IllegalStateException, IOException {
+    @Override
+    public byte[] getHashedPassword(String password, byte[] salt) throws IllegalStateException, IOException {
         Validate.notNull(password, "Password must not be null");
         Validate.notNull(salt, "Salt must not be null");
 
@@ -63,7 +68,8 @@ public final class DefaultPassword implements Password {
 
     }
 
-    @Override public boolean isPasswordCorrect(final String password, final byte[] salt, final byte[] hash) throws NullPointerException, IllegalStateException, IOException {
+    @Override
+    public boolean isPasswordCorrect(final String password, final byte[] salt, final byte[] hash) throws NullPointerException, IllegalStateException, IOException {
 
         Validate.notNull(password, "Password must not be null");
         Validate.notNull(salt, "Salt must not be null");

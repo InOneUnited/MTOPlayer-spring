@@ -7,14 +7,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Playlist")
-@NamedQuery(name="allPlaylistsQuery", query="select t from Playlist t")
+@NamedQuery(name = "allPlaylistsQuery", query = "select t from Playlist t")
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String playlistName;
 
     @Temporal(TemporalType.DATE)
@@ -26,14 +26,15 @@ public class Playlist {
     private Time creationTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="login_id")
+    @JoinColumn(name = "login_id")
     private User user;
 
     @ManyToMany(mappedBy = "playlists")
     private Set<Song> songs;
 
 
-    public Playlist(){}
+    public Playlist() {
+    }
 
     public Playlist(String playlistName, Date creationDay, Time creationTime, User user, Set<Song> songs) {
         this.playlistName = playlistName;

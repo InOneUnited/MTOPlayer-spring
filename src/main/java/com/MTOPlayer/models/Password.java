@@ -4,24 +4,25 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Password")
-@NamedQuery(name="allPasswordsQuery", query="select t from Password t")
+@NamedQuery(name = "allPasswordsQuery", query = "select t from Password t")
 public class Password {
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name="password")
+    @Column(name = "password")
     private byte[] passwordValue;
 
     @MapsId
     @OneToOne
-    @JoinColumn(name="login_id")
+    @JoinColumn(name = "login_id")
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "password")
     private Salt salt;
 
-    public Password() { }
+    public Password() {
+    }
 
     public Password(byte[] passwordValue, User user, Salt salt) {
         this.passwordValue = passwordValue;

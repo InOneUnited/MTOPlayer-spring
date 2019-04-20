@@ -9,12 +9,12 @@ public class BasicSaltDAO extends DAO implements SaltDAO {
     public byte[] getSalt(int passwordId) throws IOException, SQLException {
         byte[] salt = new byte[0];
 
-        String query = "SELECT salt FROM salt WHERE password_id=\'" +passwordId+"\';";
+        String query = "SELECT salt FROM salt WHERE password_id=\'" + passwordId + "\';";
 
         ResultSet result = fillResult(query);
 
 
-        while(result.next()){
+        while (result.next()) {
             salt = result.getBytes(1);
         }
         return salt;

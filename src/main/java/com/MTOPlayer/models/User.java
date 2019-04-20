@@ -5,17 +5,17 @@ import java.util.List;
 
 @Entity
 @Table(name = "Login")
-@NamedQuery(name="allUsersQuery", query="select t from User t")
+@NamedQuery(name = "allUsersQuery", query = "select t from User t")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
@@ -33,7 +33,8 @@ public class User {
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "user")
     private List<Playlist> playlists;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String login, String email, List<APIKey> apiKeys, Password password, Salt salt, List<Session> sessions, List<Playlist> playlists, UserInfo userInfo) {
         this.login = login;

@@ -10,12 +10,9 @@ import java.util.stream.Stream;
 public abstract class DAO {
     private String getPassword() throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
-        try (Stream<String> stream = Files.lines( Paths.get("src/main/dataBasePassword/password.txt"), StandardCharsets.UTF_8))
-        {
+        try (Stream<String> stream = Files.lines(Paths.get("src/main/dataBasePassword/password.txt"), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
             throw new IOException("PASSWORD TO DataBase NOT FOUND");
         }
@@ -25,8 +22,8 @@ public abstract class DAO {
     protected Connection openDataBase() throws SQLException, IOException {
         Connection c = null;
         String password = getPassword();
-        try{
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MTOplayer","player",password);
+        try {
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/MTOplayer", "player", password);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new SQLException("DB ERROR OPEN DB");
@@ -36,7 +33,7 @@ public abstract class DAO {
     }
 
     protected void closeStatementAndConnection(Connection connection, Statement statement) throws SQLException {
-        try{
+        try {
             connection.close();
             statement.close();
         } catch (SQLException e) {
@@ -47,7 +44,7 @@ public abstract class DAO {
 
     protected PreparedStatement getStatement(Connection connection) throws SQLException {
         PreparedStatement statement = null;
-        try{
+        try {
             statement = (PreparedStatement) connection.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,7 +55,7 @@ public abstract class DAO {
 
     protected ResultSet askDataBaseForData(String query, PreparedStatement statement) throws SQLException {
         ResultSet result = null;
-        try{
+        try {
             result = statement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,7 +68,7 @@ public abstract class DAO {
     protected void executeQuery(String query) throws SQLException, IOException {
         Connection connection = openDataBase();
 
-        try{
+        try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.executeUpdate();
             closeStatementAndConnection(connection, statement);
@@ -86,7 +83,7 @@ public abstract class DAO {
         PreparedStatement statement = null;
         ResultSet result;
 
-        try{
+        try {
             statement = connection.prepareStatement(query);
             result = askDataBaseForData(query, statement);
         } catch (SQLException e) {

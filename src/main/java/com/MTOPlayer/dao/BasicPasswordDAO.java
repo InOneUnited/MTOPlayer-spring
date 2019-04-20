@@ -8,12 +8,12 @@ public class BasicPasswordDAO extends DAO implements PasswordDAO {
     @Override
     public int getPasswordIdBasedOnUser(int userId) throws SQLException, IOException {
         int passwordId = 0;
-        String query = "SELECT id FROM password WHERE login_id=\'" +userId+"\';";
+        String query = "SELECT id FROM password WHERE login_id=\'" + userId + "\';";
 
         ResultSet result = fillResult(query);
 
 
-        while(result.next()){
+        while (result.next()) {
             passwordId = result.getInt(1);
         }
         return passwordId;
@@ -23,12 +23,12 @@ public class BasicPasswordDAO extends DAO implements PasswordDAO {
     public byte[] getHashedPassword(int passwordId) throws IOException, SQLException {
         byte[] hashedPassword = new byte[0];
 
-        String query = "SELECT password FROM password WHERE id=\'" +passwordId+"\';";
+        String query = "SELECT password FROM password WHERE id=\'" + passwordId + "\';";
 
         ResultSet result = fillResult(query);
 
 
-        while(result.next()){
+        while (result.next()) {
             hashedPassword = result.getBytes(1);
         }
         return hashedPassword;

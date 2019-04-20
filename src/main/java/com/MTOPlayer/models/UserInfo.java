@@ -6,37 +6,38 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="user_info")
-@NamedQuery(name="allUsersInfoQuery", query="select t from UserInfo t")
+@Table(name = "user_info")
+@NamedQuery(name = "allUsersInfoQuery", query = "select t from UserInfo t")
 public class UserInfo {
     @Id
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name="gender")
+    @Column(name = "gender")
     private String gender;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    @Column(name="birthday")
+    @Column(name = "birthday")
     private LocalDate birthday;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="join_date")
+    @Column(name = "join_date")
     private LocalDate joinDate;
 
     @MapsId
     @OneToOne
-    @JoinColumn(name="login_id")
+    @JoinColumn(name = "login_id")
     private User user;
 
-    public UserInfo() {}
+    public UserInfo() {
+    }
 
     public UserInfo(String firstName, String lastName, String gender, LocalDate birthday, LocalDate joinDate, User user) {
         this.firstName = firstName;

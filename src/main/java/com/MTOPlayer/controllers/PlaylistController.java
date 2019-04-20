@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PlaylistController {
-    @RequestMapping(value="/playlist/{playlistId}", method = RequestMethod.GET)
-    public String showPlaylist(@PathVariable int playlistId){
+    @RequestMapping(value = "/playlist/{playlistId}", method = RequestMethod.GET)
+    public String showPlaylist(@PathVariable int playlistId) {
         return "playlist";
     }
 }

@@ -11,7 +11,7 @@ import java.sql.*;
 public class BasicUserDAO extends DAO implements UserDAO {
     @Override
     public boolean isNewUserInDB(String login, String email) throws SQLException, IOException {
-        String query = "SELECT * FROM login WHERE  login=\'" + login +"\' OR email=\'"+ email +"\';";
+        String query = "SELECT * FROM login WHERE  login=\'" + login + "\' OR email=\'" + email + "\';";
 
         return isResultInDB(query);
     }
@@ -38,14 +38,14 @@ public class BasicUserDAO extends DAO implements UserDAO {
         pst.setInt(2, securePassword.getUser().getId());
         pst.executeUpdate();
         closeStatementAndConnection(connection, pst);
-}
+    }
 
     @Override
     public void addNewSaltToDB(Salt salt) throws IOException, SQLException {
         String query = "INSERT INTO salt(salt, password_id) VALUES(?,?)";
         Connection connection = openDataBase();
         PreparedStatement pst = connection.prepareStatement(query);
-        pst.setBytes(1, salt.getSalt() );
+        pst.setBytes(1, salt.getSalt());
         pst.setInt(2, salt.getPassword().getId());
         pst.executeUpdate();
         closeStatementAndConnection(connection, pst);
@@ -59,22 +59,22 @@ public class BasicUserDAO extends DAO implements UserDAO {
         Connection connection = openDataBase();
         PreparedStatement pst = connection.prepareStatement(query);
 
-        if(userInfo.getFirstName() == null || userInfo.getFirstName().isEmpty()){
+        if (userInfo.getFirstName() == null || userInfo.getFirstName().isEmpty()) {
             pst.setString(1, null);
         } else {
             pst.setString(1, userInfo.getFirstName());
         }
-        if(userInfo.getGender() == null || userInfo.getGender().isEmpty()){
+        if (userInfo.getGender() == null || userInfo.getGender().isEmpty()) {
             pst.setString(2, null);
-        } else{
+        } else {
             pst.setString(2, userInfo.getGender());
         }
-        if(userInfo.getBirthday() == null){
+        if (userInfo.getBirthday() == null) {
             pst.setDate(3, null);
         } else {
             pst.setDate(3, Date.valueOf(userInfo.getBirthday()));
         }
-        if(userInfo.getLastName() == null || userInfo.getLastName().isEmpty()){
+        if (userInfo.getLastName() == null || userInfo.getLastName().isEmpty()) {
             pst.setString(4, null);
         } else {
             pst.setString(4, userInfo.getLastName());
@@ -89,12 +89,12 @@ public class BasicUserDAO extends DAO implements UserDAO {
     @Override
     public int getUserId(String email) throws SQLException, IOException {
         int userId = 0;
-        String query = "SELECT id FROM login WHERE email=\'" +email+"\';";
+        String query = "SELECT id FROM login WHERE email=\'" + email + "\';";
 
         ResultSet result = fillResult(query);
 
 
-        while(result.next()){
+        while (result.next()) {
             userId = result.getInt(1);
         }
         return userId;
@@ -102,7 +102,7 @@ public class BasicUserDAO extends DAO implements UserDAO {
 
     @Override
     public boolean isEmailInDB(String email) throws IOException, SQLException {
-        String query = "SELECT * FROM login WHERE  email=\'" + email +"\';";
+        String query = "SELECT * FROM login WHERE  email=\'" + email + "\';";
 
         return isResultInDB(query);
     }
@@ -110,8 +110,8 @@ public class BasicUserDAO extends DAO implements UserDAO {
     private boolean isResultInDB(String query) throws IOException, SQLException {
         ResultSet result = fillResult(query);
 
-        try{
-            while(result.next()){
+        try {
+            while (result.next()) {
                 return true;
             }
         } catch (SQLException e) {
