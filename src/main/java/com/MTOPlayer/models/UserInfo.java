@@ -23,11 +23,9 @@ public class UserInfo {
     private String gender;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
     @Column(name = "birthday")
     private LocalDate birthday;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "join_date")
     private LocalDate joinDate;
 

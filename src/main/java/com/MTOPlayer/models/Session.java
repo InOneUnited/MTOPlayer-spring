@@ -16,7 +16,6 @@ public class Session {
     @Column(name = "start_day")
     private Date dateStart;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "start_time")
     private Time timeStart;
 
@@ -24,7 +23,6 @@ public class Session {
     @Column(name = "expiration_day")
     private Date dateExpiration;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "expiration_time")
     private Time timeExpiration;
 
