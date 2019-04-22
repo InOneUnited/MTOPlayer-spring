@@ -24,22 +24,22 @@
     <div>
         <label for="email">E-mail:</label>
 
-        <input name="email" type="email" placeholder="Your email address" th:value="${email}" required autofocus>
+        <input name="email" type="email" placeholder="Your email address" th:value="${email}" th:field="*{user.email}" required autofocus>
     </div>
     <div>
         <label for="first_name">Fist name:</label>
 
-        <input name="first_name" type="text" placeholder="Your first name" th:value="${firstName}" required autofocus>
+        <input name="first_name" type="text" placeholder="Your first name" th:value="${firstName}" th:field="*{userInfo.firstName}" required autofocus>
     </div>
     <div>
         <label for="last_name">Last name:</label>
 
-        <input name="last_name" type="text" placeholder="Your last name" th:value="${lastName}" required autofocus>
+        <input name="last_name" type="text" placeholder="Your last name" th:value="${lastName}" th:field="*{userInfo.lastName}" required autofocus>
     </div>
     <div>
         <label for="gender">Gender:</label>
 
-        <input name="gender" type="text" placeholder="Your gender" th:value="${gender}" required autofocus>
+        <input name="gender" type="text" placeholder="Your gender" th:value="${gender}" th:field="*{userInfo.gender}" required autofocus>
     </div>
     <div><p th:text="'Your join Date: ' +  ${date}">Your join date: we don't know :o</p></div>
     <input name="save_form" type="submit" value="SAVE">
