@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/header.css" th:href="@{/css/header.css}"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/footer.css" th:href="@{/css/footer.css}"/>
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/sideBar.css" th:href="@{/css/sideBar.css}"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/userInfo.css" th:href="@{/css/userInfo.css}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/css/connectedApps.css" th:href="@{/css/connectedApps.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../static/js/categories.js" th:src="@{/js/categories.js}" defer></script>
@@ -20,8 +20,56 @@
 <div th:replace="fragments/sideBar::sidebarfrag"></div>
 
 <div id="container">
+    <div id="dropbox" class="app">
+        <img src="../static/img/connectedApps/dropbox.png" th:src="@{/img/connectedApps/dropbox.png}" alt="dropbox picture"  class="app-image">
+        <p class="app-name">DROPBOX</p>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div id="google_drive" class="app">
+        <img class="app-image" src="../static/img/connectedApps/google_drive.jpeg" th:src="@{/img/connectedApps/google_drive.jpeg}" alt="google drive picture" >
+        <p class="app-name">GOOGLE DRIVE</p>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div id="spotify" class="app">
+        <img class="app-image" src="../static/img/connectedApps/spotify_logo.jpg" th:src="@{/img/connectedApps/spotify_logo.jpg}" alt="spotify picture" >
+        <p class="app-name">SPOTIFY</p>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div id="soundcloud" class="app">
+        <img class="app-image" src="../static/img/connectedApps/soundcloud.png" th:src="@{/img/connectedApps/soundcloud.png}" alt="soundcloud picture" >
+        <p class="app-name">SOUNDCLOUD</p>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div id="itunes" class="app">
+        <img class="app-image" src="../static/img/connectedApps/itunes.jpeg" th:src="@{/img/connectedApps/itunes.jpeg}" alt="itunes picture" >
+        <p class="app-name">ITUNES</p>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div id="apple_music" class="app">
+        <img class="app-image" src="../static/img/connectedApps/itunes.jpeg" th:src="@{/img/connectedApps/itunes.jpeg}" alt="apple music picture" >
+        <p class="app-name">APPLE MUSIC</p>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
 </div>
 <div th:replace="fragments/footer::footerfrag"></div>
-<footer></footer>
 </body>
 </html>

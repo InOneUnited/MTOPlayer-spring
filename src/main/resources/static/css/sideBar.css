@@ -10,7 +10,7 @@ body {
     overflow-y: auto;
     padding-top: 20px;
     background-color: black; }
-  body #content {
+  body #content, body #container {
     grid-area: main;
     overflow-y: auto;
     padding-top: 20px; }
