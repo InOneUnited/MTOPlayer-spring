@@ -56,6 +56,45 @@ input:checked + .slider:before {
   border-radius: 34px;
 }
 
+
 .slider.round:before {
   border-radius: 50%;
+}
+
+#container {
+  display: grid;
+  grid-template-rows: 15% 15% 15% 15% 15% 15%;
+
+  .app {
+    display: inline-grid;
+    grid-template-columns: 15% 20% 30% 20% 15%;;
+
+    &-image {
+      grid-column-start: 2;
+
+      grid-column-end: 3;
+
+      justify-self: stretch;
+
+      align-self: stretch;
+    }
+
+    &-name {
+      justify-self: center;
+
+      align-self: center;
+    }
+
+    .switch {
+      grid-column-end: 5;
+
+      justify-self: center;
+
+      align-self: center;
+    }
+  }
+}
+
+img {
+  max-height: 100px;
 }

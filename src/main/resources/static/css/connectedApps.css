@@ -51,4 +51,26 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%; }
 
+#container {
+  display: grid;
+  grid-template-rows: 15% 15% 15% 15% 15% 15%; }
+  #container .app {
+    display: inline-grid;
+    grid-template-columns: 15% 20% 30% 20% 15%; }
+    #container .app-image {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      justify-self: stretch;
+      align-self: stretch; }
+    #container .app-name {
+      justify-self: center;
+      align-self: center; }
+    #container .app .switch {
+      grid-column-end: 5;
+      justify-self: center;
+      align-self: center; }
+
+img {
+  max-height: 100px; }
+
 /*# sourceMappingURL=connectedApps.css.map */
