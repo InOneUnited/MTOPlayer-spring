@@ -61,7 +61,8 @@ input:checked + .slider:before {
       grid-column-start: 2;
       grid-column-end: 3;
       justify-self: stretch;
-      align-self: stretch; }
+      align-self: stretch;
+      max-height: 100px; }
     #container .app-name {
       justify-self: center;
       align-self: center; }
@@ -69,8 +70,5 @@ input:checked + .slider:before {
       grid-column-end: 5;
       justify-self: center;
       align-self: center; }
-
-img {
-  max-height: 100px; }
 
 /*# sourceMappingURL=connectedApps.css.map */

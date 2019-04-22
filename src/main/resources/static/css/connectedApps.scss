@@ -77,6 +77,8 @@ input:checked + .slider:before {
       justify-self: stretch;
 
       align-self: stretch;
+
+      max-height: 100px;
     }
 
     &-name {
@@ -93,8 +95,4 @@ input:checked + .slider:before {
       align-self: center;
     }
   }
-}
-
-img {
-  max-height: 100px;
 }
