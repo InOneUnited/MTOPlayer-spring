@@ -13,10 +13,20 @@ public class ProfileController {
         String pageName = "Profile";
         String songName = "hello";
         String artistName = "world";
+        String email = "test@mail.com";
+        String firstName = "John";
+        String lastName = " Straight";
+        String gender = "male";
+        String date = "27.04.1998";
         model.addAttribute("pageName", pageName);
         model.addAttribute("songName", songName);
         model.addAttribute("playerInformation", artistName);
-        return "sideBar";
+        model.addAttribute("email", email);
+        model.addAttribute("firstName", firstName);
+        model.addAttribute("lastName", lastName);
+        model.addAttribute("gender", gender);
+        model.addAttribute("date", date);
+        return "userInfo";
     }
 
     @RequestMapping(value = "/password", method = RequestMethod.GET)
