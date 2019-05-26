@@ -1,24 +1,27 @@
 package com.MTOPlayer.service;
 
-import com.MTOPlayer.dao.*;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+
+import com.MTOPlayer.dao.BasicPasswordDAO;
+import com.MTOPlayer.dao.BasicSaltDAO;
+import com.MTOPlayer.dao.BasicUserDAO;
+import com.MTOPlayer.dao.PasswordDAO;
+import com.MTOPlayer.dao.SaltDAO;
+import com.MTOPlayer.dao.UserDAO;
 import com.MTOPlayer.models.Password;
 import com.MTOPlayer.models.Salt;
 import com.MTOPlayer.models.User;
 import com.MTOPlayer.models.UserInfo;
 import com.MTOPlayer.security.DefaultPassword;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
-
 public class BasicLoginService implements LoginService {
     private UserDAO userDao = new BasicUserDAO();
 
     @Override
     public boolean isUserNew(User user) throws SQLException, IOException {
-        if(userDao.isNewUserInDB(user.getLogin(), user.getEmail())){
+        if (userDao.isNewUserInDB(user.getLogin(), user.getEmail())) {
             return false;
         }
         return true;
@@ -69,7 +72,7 @@ public class BasicLoginService implements LoginService {
         return securePassword;
     }
 
-    private Salt createSalt(){
+    private Salt createSalt() {
         Salt salt = new Salt();
         com.MTOPlayer.security.Password securePasswordMaker = new DefaultPassword();
         byte[] saltValue = securePasswordMaker.getDynamicSalt32();
@@ -95,7 +98,7 @@ public class BasicLoginService implements LoginService {
 
         byte[] salt = saltDAO.getSalt(passwordId);
 
-        return securePasswordChecker.isPasswordCorrect(password,salt, hashedPassword);
+        return securePasswordChecker.isPasswordCorrect(password, salt, hashedPassword);
     }
 
 }
