@@ -5,7 +5,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "Song")
-@NamedQuery(name="allSongsQuery", query="select t from Song t")
+@NamedQuery(name = "allSongsQuery", query = "select t from Song t")
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,22 +14,23 @@ public class Song {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name="playlist_song",
-            joinColumns = {@JoinColumn(name="song_id")},
-            inverseJoinColumns = {@JoinColumn(name="playlist_id")})
+            name = "playlist_song",
+            joinColumns = {@JoinColumn(name = "song_id")},
+            inverseJoinColumns = {@JoinColumn(name = "playlist_id")})
     private Set<Playlist> playlists;
 
     @Column(name = "name")
     private String songName;
 
-    @Column(name="link")
+    @Column(name = "link")
     private String songLink;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="apikey_id")
+    @JoinColumn(name = "apikey_id")
     private APIKey apiKey;
 
-    public Song(){}
+    public Song() {
+    }
 
     public Song(Set<Playlist> playlists, String songName, String songLink, APIKey apiKey) {
         this.playlists = playlists;

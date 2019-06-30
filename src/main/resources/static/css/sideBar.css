@@ -1,0 +1,20 @@
+body {
+  display: grid;
+  grid-template-rows: 6% auto 18%;
+  grid-template-areas: "header header header header header header header header header header" "sidebar main main main main main main main main main" "footer footer footer footer footer footer footer footer footer footer";
+  overflow: hidden; }
+  body .header {
+    grid-area: header; }
+  body #sideBar {
+    grid-area: sidebar;
+    overflow-y: auto;
+    padding-top: 20px;
+    background-color: black; }
+  body #content, body #container {
+    grid-area: main;
+    overflow-y: auto;
+    padding-top: 20px; }
+  body .footer {
+    grid-area: footer; }
+
+/*# sourceMappingURL=sideBar.css.map */

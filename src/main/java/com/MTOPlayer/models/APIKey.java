@@ -4,31 +4,32 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="APIKey")
-@NamedQuery(name="allAPIKeysQuery", query="select t from APIKey t")
+@Table(name = "APIKey")
+@NamedQuery(name = "allAPIKeysQuery", query = "select t from APIKey t")
 public class APIKey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
-    @Column(name="token")
+    @Column(name = "token")
     private String apiToken;
 
-    @Column(name="api_username")
+    @Column(name = "api_username")
     private String apiUsername;
 
-    @Column(name="api_name")
+    @Column(name = "api_name")
     private String apiName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="login_id")
+    @JoinColumn(name = "login_id")
     private User user;
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "apiKey")
     private List<Song> songs;
 
-    public APIKey(){}
+    public APIKey() {
+    }
 
     public APIKey(String apiToken, String apiUsername, String apiName, User user) {
         this.apiToken = apiToken;

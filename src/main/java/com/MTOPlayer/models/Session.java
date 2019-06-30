@@ -16,15 +16,13 @@ public class Session {
     @Column(name = "start_day")
     private Date dateStart;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "start_time")
     private Time timeStart;
-    
+
     @Temporal(TemporalType.DATE)
     @Column(name = "expiration_day")
     private Date dateExpiration;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "expiration_time")
     private Time timeExpiration;
 
@@ -32,10 +30,11 @@ public class Session {
     private String ip;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="login_id")
+    @JoinColumn(name = "login_id")
     private User user;
 
-    public Session() {}
+    public Session() {
+    }
 
     public Session(Date dateStart, Time timeStart, Date dateExpiration, Time timeExpiration, String ip, User user) {
         this.dateStart = dateStart;
